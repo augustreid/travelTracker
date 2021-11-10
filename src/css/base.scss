@@ -8,33 +8,32 @@ body {
   width: 100%;
 }
 
-// .parent {
-//     display: grid;
-//     grid-template: auto 1fr auto / auto 1fr auto;
-//   }
-
    header {
-    padding: 2rem;
+    padding: 5rem;
     grid-column: 1 / 4;
-    background-color: v.$dark;
+    background-color: v.$light-warm;
   }
 
   .left-side {
     grid-column: 1 / 2;
+    padding: 6rem;
     background-color: v.$light-cool;
   }
 
    main {
     grid-column: 2 / 3;
+    padding: 7rem;
     background-color: v.$light-warm;
   }
 
    .right-side {
     grid-column: 3 / 4;
+    padding: 6rem;
     background-color: v.$med-warm;
   }
 
   footer {
     grid-column: 1 / 4;
+    padding: 3rem;
     background-color: v.$med-cool;
   }
