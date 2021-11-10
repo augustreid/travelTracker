@@ -10,21 +10,29 @@ body {
 
    header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
     grid-column: 1 / 4;
-    background-color: v.$light-warm;
+    background-color: v.$med-cool;
     color: v.$dark;
     border-bottom: dashed 8px v.$dark;
+  }
+
+  .welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12pt;
+    margin: 0 3%;
       i {
-        color: v.$dark;
-        font-size: 60pt;
-        margin-left: 3%;
+        font-size: 32pt;
+        margin-left: 15px;
       }
   }
 
 h1 {
+  display: inline;
   font-size: 60pt;
   margin: 0 3%;
 }
