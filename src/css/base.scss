@@ -9,18 +9,25 @@ body {
 }
 
    header {
-     display: flex;
-     justify-content: space-between;
-    padding: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
     grid-column: 1 / 4;
     background-color: v.$light-warm;
     color: v.$dark;
-    border: dashed 10px v.$dark;
+    border-bottom: dashed 8px v.$dark;
       i {
         color: v.$dark;
-        height: 30px;
+        font-size: 60pt;
+        margin-left: 3%;
       }
   }
+
+h1 {
+  font-size: 60pt;
+  margin: 0 3%;
+}
 
   .left-side {
     grid-column: 1 / 2;
