@@ -9,9 +9,17 @@ body {
 }
 
    header {
-    padding: 5rem;
+     display: flex;
+     justify-content: space-between;
+    padding: 3rem;
     grid-column: 1 / 4;
     background-color: v.$light-warm;
+    color: v.$dark;
+    border: dashed 10px v.$dark;
+      i {
+        color: v.$dark;
+        height: 30px;
+      }
   }
 
   .left-side {
