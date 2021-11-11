@@ -14,9 +14,9 @@ body {
     align-items: center;
     padding: 1rem;
     grid-column: 1 / 4;
-    background-color: v.$med-cool;
+    background-color: white;
     color: v.$dark;
-    border-bottom: dashed 8px v.$dark;
+    border-bottom: solid 6px v.$dark;
   }
 
   .welcome {
@@ -39,21 +39,22 @@ h1 {
 
   .left-side {
     grid-column: 1 / 2;
-    padding: 6rem;
-    background-color: v.$light-cool;
+    padding: 15rem;
+    background-color: v.$med-cool;
+    width: 50%
   }
 
    main {
-    grid-column: 2 / 3;
-    padding: 7rem;
-    background-color: v.$light-warm;
-  }
-
-   .right-side {
-    grid-column: 3 / 4;
-    padding: 6rem;
+    grid-column: 2 / 4;
+    padding: 12rem;
     background-color: v.$med-warm;
   }
+
+  //  .right-side {
+  //   grid-column: 3 / 4;
+  //   padding: 6rem;
+  //   background-color: v.$med-warm;
+  // }
 
   footer {
     grid-column: 1 / 4;
