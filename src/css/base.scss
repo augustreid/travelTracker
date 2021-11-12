@@ -1,6 +1,72 @@
 /* This is an example of how to import a partial scss file*/
-@import '_variables';
+@use "_variables" as v;
 
 body {
-  background: $primary-background;
+  display: grid;
+  grid-template: auto 1fr auto / auto 1fr auto;
+  height: 100vh;
+  width: 100%;
 }
+
+   header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    grid-column: 1 / 4;
+    background-color: white;
+    color: v.$dark;
+    border-bottom: solid 6px v.$dark;
+  }
+
+  .welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12pt;
+    margin: 0 3%;
+      i {
+        font-size: 32pt;
+        margin-left: 15px;
+      }
+  }
+
+h1 {
+  display: inline;
+  font-size: 60pt;
+  margin: 0 3%;
+}
+
+.left-side {
+    grid-column: 1 / 2;
+    padding: 2rem;
+    background-color: v.$med-cool;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+.right-side {
+  grid-column: 2 / 4;
+  padding: 2rem;
+  background-color: v.$med-warm;
+}
+
+.trip-card {
+  flex: 1 1 150px;
+  background-color: v.$light-warm;
+  padding: 5rem;
+  margin: 2rem;
+  border-radius: 10px;
+}
+  //  .right-side {
+  //   grid-column: 3 / 4;
+  //   padding: 6rem;
+  //   background-color: v.$med-warm;
+  // }
+
+  footer {
+    grid-column: 1 / 4;
+    padding: 5rem;
+    background-color: v.$light-cool;
+  }
