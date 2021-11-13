@@ -1,4 +1,6 @@
-import { expect } from 'chai';
+import {
+  expect
+} from 'chai';
 import Traveler from '../src/Traveler.js';
 import {
   sampleTravelers
@@ -37,5 +39,4 @@ describe('Traveler', () => {
     let result = traveler.getFirstName();
     expect(result).to.equal("Ham");
   });
-
 });
