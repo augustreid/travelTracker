@@ -1,6 +1,6 @@
 class DataRepo {
-  constructor(dataset) {
-
+  constructor(dataSet) {
+    this.dataSet = dataSet;
   }
 }
 
