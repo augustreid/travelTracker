@@ -19,5 +19,18 @@ describe('Traveler', () => {
 
   it("should be an instance of User", function() {
     expect(traveler).to.be.an.instanceOf(Traveler);
-  })
+  });
+
+  it("should have an id", function() {
+    expect(traveler.id).to.equal(1);
+  });
+
+  it("should have a name", function() {
+    expect(traveler.name).to.equal("Ham Leadbeater");
+  });
+
+  it("should have a traveler type", function() {
+    expect(traveler.type).to.equal("relaxer");
+  });
+  
 });
