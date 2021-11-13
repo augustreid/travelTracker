@@ -32,5 +32,10 @@ describe('Traveler', () => {
   it("should have a traveler type", function() {
     expect(traveler.type).to.equal("relaxer");
   });
-  
+
+  it("should be able to return the traveler's first name", function() {
+    let result = traveler.getFirstName();
+    expect(result).to.equal("Ham");
+  });
+
 });
