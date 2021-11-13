@@ -160,3 +160,9 @@ const sampleTravelers = [
   "image": "https://images.unsplash.com/photo-1539545547102-90ae2c140089?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
   "alt": "man riding on kayak surrounded by mountains"
 }];
+
+export {
+  sampleTravelers,
+  sampleTrips,
+  samplePlaces
+};
