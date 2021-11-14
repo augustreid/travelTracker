@@ -47,4 +47,19 @@ describe('Destination', () => {
     expect(destination.alt).to.equal("lit up city at night");
   })
 
+  it("should calculate total lodging costs for a given number of days", function() {
+    let result1 = destination.calculateLodging(10);
+    expect(result1).to.equal(700);
+  })
+
+  it("should calculate total flight cost for a given number of people", function() {
+    let result2 = destination.calculateFlights(10);
+    expect(result2).to.equal(8900);
+  })
+
+  it("should calculate the total trip cost including a 10% agent fee", function() {
+    let result3 = destination.calculateTotalCost(10, 10);
+    expect(result3).to.equal()
+  })
+
 });

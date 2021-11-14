@@ -7,6 +7,20 @@ class Destination {
     this.image = place.image;
     this.alt = place.alt;
   }
+
+  calculateLodging(numDays) {
+    const lodgingTotal = this.lodgingPerDay * numDays;
+    return lodgingTotal;
+  }
+
+  calculateFlights(numPeople) {
+    const flightsTotal = this.flightPerPerson * numPeople;
+    return flightsTotal;
+  }
+
+  calculateTotalCost(days, people) {
+    const totalCost = (this.calculateLodging(days) + this.calculateFlights(people)) * 1.1;
+  }
 }
 
 
