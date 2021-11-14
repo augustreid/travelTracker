@@ -34,5 +34,16 @@ describe('DataRepo', () => {
       expect(tripRepo.dataSet).to.deep.equal(sampleTrips);
     })
 
+    it("should be able to return an element based on the ID", function() {
+      let result1 = destinationRepo.findElementById(10);
+      let result2 = tripRepo.findElementById(89);
+      expect(result1).to.deep.equal(samplePlaces[2]);
+      expect(result2).to.deep.equal(sampleTrips[1]);
+    })
+
+    // it("should be able to return an array of a single user's data based on the user ID", function() {
+    //
+    // })
+
 
 });
