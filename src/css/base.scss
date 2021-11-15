@@ -43,7 +43,7 @@ h1 {
 
 .left-side {
     grid-column: 1 / 2;
-    padding: 2rem;
+    // padding: 2rem;
     // background-color: v.$med-cool;
     background-color: white;
     display: flex;
@@ -52,6 +52,7 @@ h1 {
   }
 
   [data-tab-content] {
+    border: solid 2rem;
     display: none;
   }
 
@@ -59,19 +60,24 @@ h1 {
     display: inherit;
   }
 
+  .past-trips {
+    background-color: #E3E7F2;
+    border-color: #E3E7F2;
+  }
+
   .trip-buttons {
     display: flex;
     justify-content: center;
-      li {
+      button {
         height: 30px;
         color: v.$dark;
-        // background-color: #F3EFFB;
-        background-color: white;
-        // font-size: larger;
+        font-size: medium;
         font-weight: bold;
-        border: inset 3px v.$med-cool;
-        border-radius: 8px;
-        margin: 2px;
+        border: solid 3px v.$dark;
+        border-bottom: none;
+        // margin: 3px;
+        // margin-bottom: none;
+        margin-left: 2px;
       }
       .outset {
         border-style: outset;
@@ -87,7 +93,7 @@ h1 {
 .trip-card {
   flex: 1 1 150px;
   // background-color: #F2F3F8;
-  background-color: #E3E7F2;
+  background-color: white;
   padding: 1rem;
   margin: 1rem;
   border-radius: 6px;

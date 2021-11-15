@@ -17,15 +17,15 @@
     </header>
     <main class="left-side">
       <nav class="trip-buttons" id="tripButtons">
-        <button id="past" data-tab-target="#pastTrips"> Where I've Been </button>
-        <button id="future" data-tab-target="#futureTrips"> Where I'm Going </button>
-        <button id="pending" data-tab-target="#pendingTrips"> Waiting for Approval </button>
+        <button id="past" data-tab-target="#pastTrips" class="past-trips"> Previous </button>
+        <button id="future" data-tab-target="#futureTrips"> Upcoming </button>
+        <button id="pending" data-tab-target="#pendingTrips"> Pending </button>
       </nav>
 
       <section class="tab-content">
-        <section id="pastTrips" data-tab-content class="active"></section>
-        <section id="futureTrips" data-tab-content></section>
-        <section id="pendingTrips" data-tab-content></section>
+        <section id="pastTrips" data-tab-content class="past-trips active"></section>
+        <section id="futureTrips" data-tab-content class="future-trips"></section>
+        <section id="pendingTrips" data-tab-content class="pending-trips"></section>
       </section>
     </main>
     <main class="right-side"> Main Content</main>
