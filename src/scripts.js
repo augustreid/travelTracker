@@ -14,15 +14,15 @@ import {
   sampleTrips
 } from "../src/dummyData.js";
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// const greeting = document.querySelector("#greeting");
 
-const traveler;
-const userTrips;
+let traveler;
+let userTrips;
 
 const renderDashboard = () => {
   renderTravelerData();
   renderTravelerTrips();
+  displayDashboard();
 }
 
 const renderTravelerData = () => {
@@ -36,3 +36,18 @@ const renderTravelerTrips = () => {
   const travelerTrips = allTrips.findTravelerData(traveler.id);
   userTrips = new Trips(travelerTrips);
 }
+
+const displayDashboard = () => {
+  displayGreeting();
+}
+
+const displayGreeting = () => {
+  const firstName = traveler.getFirstName();
+  greeting.innerText = `Welcome back, ${firstName}!`;
+}
+
+const greeting = document.querySelector("#greeting");
+
+
+//event listeners
+window.addEventListener("load", renderDashboard);
