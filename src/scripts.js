@@ -103,8 +103,6 @@ const getDisplaySection = (status) => {
   return section;
 }
 
-
-
 const getDestinationInfo = (id) => {
   const place = destinations.findElementById(id);
   const location = new Destination(place);
