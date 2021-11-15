@@ -40,6 +40,7 @@ const renderTravelerTrips = () => {
   const travelerTrips = allTrips.findTravelerData(traveler.id);
   userTrips = new Trips(travelerTrips);
   userTrips.sortTripsByDate();
+  userTrips.sortTripsByStatus();
 }
 
 const renderDestinations = () => {
@@ -52,6 +53,7 @@ const displayDashboard = () => {
   displayGreeting();
   displayTrips(past);
   displayTrips(future);
+  displayTrips(pending);
   toggleTabs();
 }
 
@@ -94,12 +96,12 @@ const displayTrips = (section) => {
 
 const getDisplaySection = (status) => {
   let section;
-  if (status === past) {
+  if (status === pending) {
+    section = "pending";
+  } else if (status === past) {
     section = "past";
   } else if (status === future) {
     section = "future";
-  } else if (status === pending) {
-    section = "pending";
   }
   return section;
 }
@@ -128,6 +130,7 @@ const toggleTabs = () => {
 const greeting = document.querySelector("#greeting");
 const past = document.querySelector("#pastTrips");
 const future = document.querySelector("#futureTrips");
+const pending = document.querySelector("#pendingTrips");
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");
 //event listeners
