@@ -60,7 +60,11 @@ describe('SingleTrip', () => {
   });
 
   it("should be able to store suggested activities", function() {
-    expect(trip.activities).to.equal([]);
-  })
+    expect(trip.activities).to.deep.equal([]);
+  });
 
+  it("should be able to return the date in readable format", function() {
+    const result = trip.formatDate();
+    expect(result).to.equal("Fri Sep 27 2019")
+  })
 })
