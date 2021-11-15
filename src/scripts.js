@@ -18,15 +18,21 @@ import {
 import './images/turing-logo.png'
 
 const traveler;
-const allDestinations;
 const userTrips;
 
 const renderDashboard = () => {
   renderTravelerData();
+  renderTravelerTrips();
 }
 
 const renderTravelerData = () => {
   const allTravelers = new DataRepo(sampleTravelers);
   const travelerInfo = allTravelers.findElementById(3);
   traveler = new Traveler(travelerInfo);
+}
+
+const renderTravelerTrips = () => {
+  const allTrips = new DataRepo(sampleTrips);
+  const travelerTrips = allTrips.findTravelerData(traveler.id);
+  userTrips = new Trips(travelerTrips);
 }
