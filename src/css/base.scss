@@ -8,27 +8,31 @@ body {
   width: 100%;
 }
 
-   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    grid-column: 1 / 4;
-    background-color: white;
-    color: v.$dark;
-    border-bottom: solid 6px v.$dark;
-  }
+ header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  grid-column: 1 / 4;
+  background-color: white;
+  color: v.$dark;
+  // border-bottom: solid 6px v.$dark;
+}
 
-  .welcome {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12pt;
+button {
+  cursor: pointer;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12pt;
     margin: 0 3%;
-      i {
-        font-size: 32pt;
-        margin-left: 15px;
-      }
+    i {
+      font-size: 32pt;
+      margin-left: 15px;
+    }
   }
 
 h1 {
@@ -39,11 +43,63 @@ h1 {
 
 .left-side {
     grid-column: 1 / 2;
-    padding: 2rem;
-    background-color: v.$med-cool;
+    // padding: 2rem;
+    // background-color: v.$med-cool;
+    background-color: white;
     display: flex;
     flex-direction: column;
     overflow: scroll;
+  }
+
+  [data-tab-content] {
+    border: solid 2rem;
+    display: none;
+  }
+
+  .active[data-tab-content] {
+    display: inherit;
+  }
+
+.tab-content {
+  display: flex;
+  flex-grow: 1;
+}
+
+  .past-trips {
+    background-color: #E3E7F2;
+    border-color: #E3E7F2;
+    flex-grow: 1;
+  }
+
+  .future-trips {
+    background-color: v.$light-warm;
+    border-color: v.$light-warm;
+    flex-grow: 1;
+  }
+
+  .pending-trips {
+    background-color: rgb(251, 221, 216);
+    border-color: rgb(251, 221, 216);
+    flex-grow: 1;
+  }
+
+  .trip-buttons {
+    display: flex;
+    justify-content: center;
+      button {
+        height: 30px;
+        color: v.$dark;
+        font-size: medium;
+        font-weight: bold;
+        border: solid 3px v.$dark;
+        border-bottom: none;
+        // margin: 3px;
+        // margin-bottom: none;
+        margin-left: 2px;
+      }
+      .outset {
+        border-style: outset;
+      }
   }
 
 .right-side {
@@ -54,19 +110,23 @@ h1 {
 
 .trip-card {
   flex: 1 1 150px;
-  background-color: v.$light-warm;
-  padding: 5rem;
-  margin: 2rem;
-  border-radius: 10px;
+  // background-color: #F2F3F8;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border: outset 5px lightgray;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-  //  .right-side {
-  //   grid-column: 3 / 4;
-  //   padding: 6rem;
-  //   background-color: v.$med-warm;
-  // }
 
   footer {
     grid-column: 1 / 4;
     padding: 5rem;
     background-color: v.$light-cool;
   }
+
+.hidden {
+  display: none;
+}

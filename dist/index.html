@@ -11,23 +11,31 @@
     <header>
       <h1><i class="fas fa-rocket"></i> TRVL.</h1>
       <span class="welcome">
-        <h2>Welcome, Traveler!</h2>
+        <h2 id="greeting"> Welcome, Traveler! </h2>
         <i class="fas fa-user-astronaut"></i>
       </span>
     </header>
     <main class="left-side">
-      <section class="trip-card"> Trip info </section>
-      <section class="trip-card"> trip info </section>
-      <section class="trip-card"> trip info </section>
-      <section class="trip-card"> trip info </section>
-      <section class="trip-card"> trip info </section>
+      <nav class="trip-buttons" id="tripButtons">
+        <button id="past" data-tab-target="#pastTrips" class="past-trips"> Previous </button>
+        <button id="future" data-tab-target="#futureTrips" class="future-trips"> Upcoming </button>
+        <button id="pending" data-tab-target="#pendingTrips" class="pending-trips"> Pending </button>
+      </nav>
+
+      <section class="tab-content">
+        <div class="all-tabs past-trips active">
+          <section id="pastTrips" data-tab-content class="past-trips active"></section>
+        </div>
+        <div class="all-tabs future-trips">
+          <section id="futureTrips" data-tab-content class="future-trips"></section>
+        </div>
+        <div class="all-tabs future-trips">
+          <section id="pendingTrips" data-tab-content class="pending-trips"></section>
+        </div>
+      </section>
     </main>
     <main class="right-side"> Main Content</main>
-    <!-- <aside class="right-side">Right Sidebar</aside> -->
     <footer>Footer</footer>
-
-
-
 
   <script src="bundle.js"></script>
 
