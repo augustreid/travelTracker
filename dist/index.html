@@ -48,7 +48,22 @@
             <button aria-label="Close modal" data-micromodal-close></button>
           </header>
           <div id="modal-1-content">
-            Modal Content
+            <form>
+              <select name="tripOptions">
+                 <option value="">--Please choose a destination--</option>
+                 <option value="Stay Home"> Stay Home </option>
+              </select>
+              <label for="pickDate"> Choose a departure date </label>
+              <input type="date" name="pickDate" id="pickDate">
+              <label for="tripLength"> How many days? </label>
+              <input type="number" name="tripLength" id="tripLength">
+              <label for="partySize"> How many travelers? </label>
+              <input type="number" name="partySize" id="partySize">
+              <h4> Estimated trip cost including 10% agent fee: </h4>
+              <p> $69420 </p>
+              <button type="reset" id="cancelButton"> Cancel </button>
+              <button type="submit" id="submitButton"> Book trip! </button>
+            </form>
           </div>
         </div>
       </div>
