@@ -70,7 +70,9 @@ const displayTrips = (section) => {
   }
   userTrips[timeFrame].forEach((trip) => {
     let vacation = new SingleTrip(trip);
-    let placeName = getDestinationName(trip.destinationID);
+    let place = getDestinationInfo(trip.destinationID);
+    let placeName = place.returnPlaceName();
+    let tripCost = place.calculateTotalCost(trip.duration, trip.travelers)
     section.innerHTML += `<section class="trip-card">
       <h3> ${placeName} </h3>
       <table>
@@ -86,32 +88,21 @@ const displayTrips = (section) => {
           <th> Crew: </th>
           <td> ${vacation.travelers} </td>
         </tr>
+        <tr>
+          <th> Budget: </th>
+          <td> $${tripCost} </td>
+        </tr>
       </table>
     </section>`
   })
 }
 
-const getDestinationName = (id) => {
+const getDestinationInfo = (id) => {
   const place = destinations.findElementById(id);
   const location = new Destination(place);
-  return location.destination;
+  return location
 }
 
-
-// const toggleTripView = () => {
-//   event.preventDefault();
-//   if(futureTrips.classList.contains("hidden")) {
-//       futureTrips.classList.remove("hidden");
-//       pastTrips.classList.add("hidden");
-//       future.classList.remove("outset");
-//       past.classList.add("outset");
-//   } else if (pastTrips.classList.contains("hidden")) {
-//       pastTrips.classList.remove("hidden");
-//       futureTrips.classList.add("hidden");
-//       past.classList.remove("outset");
-//       future.classList.add("outset");
-//     }
-//   }
 const toggleTabs = () => {
   event.preventDefault();
   tabs.forEach(tab => {

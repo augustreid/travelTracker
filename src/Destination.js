@@ -8,6 +8,10 @@ class Destination {
     this.alt = place.alt;
   }
 
+  returnPlaceName() {
+    return this.destination;
+  }
+
   calculateLodging(numDays) {
     const lodgingTotal = this.lodgingPerDay * numDays;
     return lodgingTotal;
@@ -19,7 +23,8 @@ class Destination {
   }
 
   calculateTotalCost(days, people) {
-    const totalCost = (this.calculateLodging(days) + this.calculateFlights(people)) * 1.1;
+    const totalCost = Math.round((this.calculateLodging(days) + this.calculateFlights(people)) * 1.1);
+    return totalCost;
   }
 }
 
