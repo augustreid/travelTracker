@@ -74,7 +74,7 @@ const sampleTravelers = [
     "travelers": 3,
     "date": "2020/08/30",
     "duration": 11,
-    "status": "approved",
+    "status": "pending",
     "suggestedActivities": []
   }, {
     "id": 50,

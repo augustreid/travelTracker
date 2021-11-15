@@ -64,6 +64,7 @@ const displayTrips = (section) => {
   const sectionType = getDisplaySection(section);
   userTrips[sectionType].forEach((trip) => {
     let vacation = new SingleTrip(trip);
+    vacation.formatDate();
     let place = getDestinationInfo(trip.destinationID);
     let placeName = place.returnPlaceName();
     let tripCost = place.calculateTotalCost(trip.duration, trip.travelers)

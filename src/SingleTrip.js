@@ -12,8 +12,7 @@ class SingleTrip {
 
   formatDate() {
     const day = new Date(this.date);
-    console.log(day.toDateString());
-    return day.toDateString();
+    this.date = day.toDateString();
   }
 }
 
