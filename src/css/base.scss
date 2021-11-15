@@ -66,16 +66,20 @@ h1 {
 }
 
   .past-trips {
-    // height: inherit;
     background-color: #E3E7F2;
     border-color: #E3E7F2;
     flex-grow: 1;
   }
 
   .future-trips {
-    // height: inherit;
     background-color: v.$light-warm;
     border-color: v.$light-warm;
+    flex-grow: 1;
+  }
+
+  .pending-trips {
+    background-color: rgb(251, 221, 216);
+    border-color: rgb(251, 221, 216);
     flex-grow: 1;
   }
 
