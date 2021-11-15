@@ -8,27 +8,31 @@ body {
   width: 100%;
 }
 
-   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    grid-column: 1 / 4;
-    background-color: white;
-    color: v.$dark;
-    border-bottom: solid 6px v.$dark;
-  }
+ header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  grid-column: 1 / 4;
+  background-color: white;
+  color: v.$dark;
+  // border-bottom: solid 6px v.$dark;
+}
 
-  .welcome {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12pt;
+button {
+  cursor: pointer;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12pt;
     margin: 0 3%;
-      i {
-        font-size: 32pt;
-        margin-left: 15px;
-      }
+    i {
+      font-size: 32pt;
+      margin-left: 15px;
+    }
   }
 
 h1 {
@@ -40,10 +44,30 @@ h1 {
 .left-side {
     grid-column: 1 / 2;
     padding: 2rem;
-    background-color: v.$med-cool;
+    // background-color: v.$med-cool;
+    background-color: white;
     display: flex;
     flex-direction: column;
     overflow: scroll;
+  }
+
+  .trip-buttons {
+    display: flex;
+    justify-content: center;
+      button {
+        height: 30px;
+        color: v.$dark;
+        // background-color: #F3EFFB;
+        background-color: white;
+        // font-size: larger;
+        font-weight: bold;
+        border: inset 3px v.$med-cool;
+        border-radius: 8px;
+        margin: 2px;
+      }
+      .outset {
+        border-style: outset;
+      }
   }
 
 .right-side {
@@ -54,10 +78,14 @@ h1 {
 
 .trip-card {
   flex: 1 1 150px;
-  background-color: v.$light-warm;
-  padding: 5rem;
-  margin: 2rem;
-  border-radius: 10px;
+  // background-color: #F2F3F8;
+  background-color: #E3E7F2;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
   //  .right-side {
   //   grid-column: 3 / 4;
