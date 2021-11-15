@@ -93,24 +93,13 @@ h1 {
         font-weight: bold;
         border: solid 3px v.$dark;
         border-bottom: none;
-        // margin: 3px;
-        // margin-bottom: none;
         margin-left: 2px;
-      }
-      .outset {
-        border-style: outset;
       }
   }
 
-.right-side {
-  grid-column: 2 / 4;
-  padding: 2rem;
-  background-color: v.$med-warm;
-}
 
 .trip-card {
   flex: 1 1 150px;
-  // background-color: #F2F3F8;
   background-color: white;
   padding: 1rem;
   margin: 1rem;
@@ -119,6 +108,48 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.right-side {
+  grid-column: 2 / 4;
+  padding: 2rem;
+  background-color: v.$med-warm;
+  display: flex;
+  justify-content: space-between;
+}
+
+.book-trip {
+  background-color: v.$light-warm;
+  display: flex;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.form-header {
+  background-color: inherit;
+  align-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+    p  {
+      background-color: white;
+      font-size: larger;
+      padding: 0 3%;
+      border: solid 1px gray;
+    }
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-around;
 }
 
   footer {
