@@ -3,6 +3,7 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import MicroModal from "micromodal";
 import Trips from '../src/Trips.js';
 import DataRepo from "../src/DataRepo.js";
 import SingleTrip from "../src/SingleTrip.js";

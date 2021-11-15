@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,37 +8,57 @@
   <script src="https://kit.fontawesome.com/cbf4cafa31.js" crossorigin="anonymous"></script>
   <title>Travel Tracker</title>
 </head>
-<body>
-    <header>
-      <h1><i class="fas fa-rocket"></i> TRVL.</h1>
-      <span class="welcome">
-        <h2 id="greeting"> Welcome, Traveler! </h2>
-        <i class="fas fa-user-astronaut"></i>
-      </span>
-    </header>
-    <main class="left-side">
-      <nav class="trip-buttons" id="tripButtons">
-        <button id="past" data-tab-target="#pastTrips" class="past-trips"> Previous </button>
-        <button id="future" data-tab-target="#futureTrips" class="future-trips"> Upcoming </button>
-        <button id="pending" data-tab-target="#pendingTrips" class="pending-trips"> Pending </button>
-      </nav>
 
-      <section class="tab-content">
-        <div class="all-tabs past-trips active">
-          <section id="pastTrips" data-tab-content class="past-trips active"></section>
+<body>
+  <header>
+    <h1><i class="fas fa-rocket"></i> TRVL.</h1>
+    <span class="welcome">
+      <h2 id="greeting"> Welcome, Traveler! </h2>
+      <i class="fas fa-user-astronaut"></i>
+    </span>
+  </header>
+  <main class="left-side">
+    <nav class="trip-buttons" id="tripButtons">
+      <button id="past" data-tab-target="#pastTrips" class="past-trips"> Previous </button>
+      <button id="future" data-tab-target="#futureTrips" class="future-trips"> Upcoming </button>
+      <button id="pending" data-tab-target="#pendingTrips" class="pending-trips"> Pending </button>
+    </nav>
+
+    <section class="tab-content">
+      <div class="all-tabs past-trips active">
+        <section id="pastTrips" data-tab-content class="past-trips active"></section>
+      </div>
+      <div class="all-tabs future-trips">
+        <section id="futureTrips" data-tab-content class="future-trips"></section>
+      </div>
+      <div class="all-tabs future-trips">
+        <section id="pendingTrips" data-tab-content class="pending-trips"></section>
+      </div>
+    </section>
+  </main>
+  <main class="right-side">
+
+    <div id="modal-1" aria-hidden="true">
+      <div tabindex="-1" data-micromodal-close>
+        <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+          <header>
+            <h2 id="modal-1-title">
+              Plan a Trip
+            </h2>
+            <button aria-label="Close modal" data-micromodal-close></button>
+          </header>
+          <div id="modal-1-content">
+            Modal Content
+          </div>
         </div>
-        <div class="all-tabs future-trips">
-          <section id="futureTrips" data-tab-content class="future-trips"></section>
-        </div>
-        <div class="all-tabs future-trips">
-          <section id="pendingTrips" data-tab-content class="pending-trips"></section>
-        </div>
-      </section>
-    </main>
-    <main class="right-side"> Main Content</main>
-    <footer>Footer</footer>
+      </div>
+    </div>
+
+  </main>
+  <footer>Footer</footer>
 
   <script src="bundle.js"></script>
 
 </body>
+
 </html>
