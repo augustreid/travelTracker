@@ -51,7 +51,9 @@ const renderDestinations = () => {
 //display functions
 const displayDashboard = () => {
   displayGreeting();
-  displayTrips("past");
+  displayTrips(past);
+  displayTrips(future);
+  toggleTabs();
 }
 
 const displayGreeting = () => {
@@ -59,11 +61,17 @@ const displayGreeting = () => {
   greeting.innerText = `Welcome back, ${firstName}!`;
 }
 
-const displayTrips = (time) => {
-  const oldTrips = userTrips[time].forEach((trip) => {
+const displayTrips = (section) => {
+  let timeFrame;
+  if (section === past) {
+    timeFrame = "past";
+  } else if (section === future) {
+    timeFrame = "future";
+  }
+  userTrips[timeFrame].forEach((trip) => {
     let vacation = new SingleTrip(trip);
     let placeName = getDestinationName(trip.destinationID);
-    pastTrips.innerHTML += `<section class="trip-card">
+    section.innerHTML += `<section class="trip-card">
       <h3> ${placeName} </h3>
       <table>
         <tr>
@@ -90,12 +98,39 @@ const getDestinationName = (id) => {
 }
 
 
+// const toggleTripView = () => {
+//   event.preventDefault();
+//   if(futureTrips.classList.contains("hidden")) {
+//       futureTrips.classList.remove("hidden");
+//       pastTrips.classList.add("hidden");
+//       future.classList.remove("outset");
+//       past.classList.add("outset");
+//   } else if (pastTrips.classList.contains("hidden")) {
+//       pastTrips.classList.remove("hidden");
+//       futureTrips.classList.add("hidden");
+//       past.classList.remove("outset");
+//       future.classList.add("outset");
+//     }
+//   }
+const toggleTabs = () => {
+  event.preventDefault();
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      var target = document.querySelector(tab.dataset.tabTarget);
+      tabContents.forEach(tabContent => {
+        tabContent.classList.remove("active");
+      })
+      target.classList.add("active");
+    })
+  })
+};
+
 
 //query selectors
 const greeting = document.querySelector("#greeting");
-const pastTrips = document.querySelector("#pastTrips");
-const futureTrips = document.querySelector("#futureTrips");
-
-
+const past = document.querySelector("#pastTrips");
+const future = document.querySelector("#futureTrips");
+const tabs = document.querySelectorAll("[data-tab-target]");
+const tabContents = document.querySelectorAll("[data-tab-content]");
 //event listeners
 window.addEventListener("load", renderDashboard);

@@ -51,10 +51,18 @@ h1 {
     overflow: scroll;
   }
 
+  [data-tab-content] {
+    display: none;
+  }
+
+  .active[data-tab-content] {
+    display: inherit;
+  }
+
   .trip-buttons {
     display: flex;
     justify-content: center;
-      button {
+      li {
         height: 30px;
         color: v.$dark;
         // background-color: #F3EFFB;
