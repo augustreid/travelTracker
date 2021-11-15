@@ -3,6 +3,8 @@ class Trips {
     this.allTrips = userTrips;
     this.pending = [];
     this.approved = [];
+    this.past = [];
+    this.future = [];
   }
 
   findTripById(id) {
@@ -17,7 +19,17 @@ class Trips {
     })
   }
 
-
+  sortTripsByDate() {
+    let makeDate = new Date();
+    const today = makeDate.getFullYear() + '/' + (makeDate.getMonth() + 1) + '/' + makeDate.getDate();
+    this.allTrips.forEach((trip) => {
+      if (trip.date > today) {
+        this.future.push(trip);
+      } else {
+        this.past.push(trip);
+      }
+    })
+  }
 }
 
 

@@ -5,7 +5,7 @@ import Trips from '../src/Trips.js';
 import DataRepo from "../src/DataRepo.js";
 import {
   sampleTrips
-  } from "../src/dummyData.js";
+} from "../src/dummyData.js";
 
 describe('Trips', () => {
   let user2Data;
@@ -51,8 +51,7 @@ describe('Trips', () => {
   it("should be able to filter and store trips with pending status", function() {
     user3Trips.sortTripsByStatus();
     expect(user3Trips.pending).to.deep.equal(
-      [
-        {
+      [{
         "id": 3,
         "userID": 3,
         "destinationID": 22,
@@ -61,15 +60,13 @@ describe('Trips', () => {
         "duration": 17,
         "status": "pending",
         "suggestedActivities": []
-      }
-    ])
+      }])
   })
 
   it("should be able to filter and store trips with approved status", function() {
     user3Trips.sortTripsByStatus();
     expect(user3Trips.approved).to.deep.equal(
-      [
-        {
+      [{
         "id": 41,
         "userID": 3,
         "destinationID": 25,
@@ -87,7 +84,7 @@ describe('Trips', () => {
         "duration": 17,
         "status": "approved",
         "suggestedActivities": []
-      },{
+      }, {
         "id": 65,
         "userID": 3,
         "destinationID": 35,
@@ -98,6 +95,52 @@ describe('Trips', () => {
         "suggestedActivities": []
       }]
     )
+  });
+
+  it("should be able to filter and store future trips", function() {
+    user3Trips.sortTripsByDate();
+    expect(user3Trips.future).to.deep.equal([{
+      "id": 3,
+      "userID": 3,
+      "destinationID": 22,
+      "travelers": 4,
+      "date": "2022/05/22",
+      "duration": 17,
+      "status": "pending",
+      "suggestedActivities": []
+    }])
+  })
+
+  it("should be able to filter and store past trips", function() {
+    user3Trips.sortTripsByDate();
+    expect(user3Trips.past).to.deep.equal([{
+      "id": 41,
+      "userID": 3,
+      "destinationID": 25,
+      "travelers": 3,
+      "date": "2020/08/30",
+      "duration": 11,
+      "status": "approved",
+      "suggestedActivities": []
+    }, {
+      "id": 50,
+      "userID": 3,
+      "destinationID": 16,
+      "travelers": 5,
+      "date": "2020/07/02",
+      "duration": 17,
+      "status": "approved",
+      "suggestedActivities": []
+    }, {
+      "id": 65,
+      "userID": 3,
+      "destinationID": 35,
+      "travelers": 4,
+      "date": "2020/03/21",
+      "duration": 18,
+      "status": "approved",
+      "suggestedActivities": []
+    }])
   })
 
 })
