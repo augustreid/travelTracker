@@ -44,7 +44,6 @@ const renderTravelerTrips = () => {
 
 const renderDestinations = () => {
   destinations = new DataRepo(samplePlaces);
-  console.log(destinations)
 }
 
 
@@ -62,13 +61,8 @@ const displayGreeting = () => {
 }
 
 const displayTrips = (section) => {
-  let timeFrame;
-  if (section === past) {
-    timeFrame = "past";
-  } else if (section === future) {
-    timeFrame = "future";
-  }
-  userTrips[timeFrame].forEach((trip) => {
+  const sectionType = getDisplaySection(section);
+  userTrips[sectionType].forEach((trip) => {
     let vacation = new SingleTrip(trip);
     let place = getDestinationInfo(trip.destinationID);
     let placeName = place.returnPlaceName();
@@ -96,6 +90,20 @@ const displayTrips = (section) => {
     </section>`
   })
 }
+
+const getDisplaySection = (status) => {
+  let section;
+  if (status === past) {
+    section = "past";
+  } else if (status === future) {
+    section = "future";
+  } else if (status === pending) {
+    section = "pending";
+  }
+  return section;
+}
+
+
 
 const getDestinationInfo = (id) => {
   const place = destinations.findElementById(id);
