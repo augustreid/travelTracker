@@ -18,10 +18,13 @@ import {
 
 let traveler;
 let userTrips;
+let destinations;
+// let location;
 
 const renderDashboard = () => {
   renderTravelerData();
   renderTravelerTrips();
+  renderDestinations();
   displayDashboard();
 }
 
@@ -39,6 +42,18 @@ const renderTravelerTrips = () => {
   userTrips.sortTripsByDate();
 }
 
+const renderDestinations = () => {
+  destinations = new DataRepo(samplePlaces);
+  console.log(destinations);
+}
+
+const getSingleDestination = (id) => {
+  let singlePlace = destinations.findElementById(id);
+  console.log(singlePlace);
+  location = new Destination(singlePlace);
+  return location;
+}
+
 
 //display functions
 const displayDashboard = () => {
@@ -53,9 +68,10 @@ const displayGreeting = () => {
 
 const displayTrips = (time) => {
   const oldTrips = userTrips[time].forEach((trip) => {
-    const vacation = new SingleTrip(trip)
+    let vacation = new SingleTrip(trip);
+    let location = getSingleDestination(25);
     pastTrips.innerHTML += `<section class="trip-card">
-      <h3> ${vacation.destination} </h3>
+      <h3> ${location.destination} </h3>
       <table>
         <tr>
           <th> Date: </th>
@@ -73,6 +89,7 @@ const displayTrips = (time) => {
     </section>`
   })
 }
+
 
 
 //query selectors
