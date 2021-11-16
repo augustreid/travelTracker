@@ -156,6 +156,8 @@ const displayTripOptions = () => {
 }
 
 
+
+
 //query selectors
 const greeting = document.querySelector("#greeting");
 const past = document.querySelector("#pastTrips");
@@ -163,6 +165,12 @@ const future = document.querySelector("#futureTrips");
 const pending = document.querySelector("#pendingTrips");
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");
-const tripOptions = document.querySelector("#tripOptions")
+const tripOptions = document.querySelector("#tripOptions");
+const pickDate = document.querySelector("#pickDate");
+const tripLength = document.querySelector("#tripLength");
+const partySize = document.querySelector("#partySize");
+const price = document.querySelector("#price");
+const cancelButton = document.querySelector("#cancelButton");
+const submitButton = document.querySelector("#submitButton");
 //event listeners
 window.addEventListener("load", renderDashboard);
