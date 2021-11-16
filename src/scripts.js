@@ -3,6 +3,7 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import MicroModal from "micromodal";
 import Trips from '../src/Trips.js';
 import DataRepo from "../src/DataRepo.js";
 import SingleTrip from "../src/SingleTrip.js";
@@ -17,34 +18,47 @@ import {
 // const greeting = document.querySelector("#greeting");
 
 let traveler;
+let allTrips;
 let userTrips;
 let destinations;
 // let location;
 
 const renderDashboard = () => {
-  renderDestinations();
   renderTravelerData();
-  renderTravelerTrips();
-  displayDashboard();
 }
 
 //render functions
 const renderTravelerData = () => {
-  const allTravelers = new DataRepo(sampleTravelers);
-  const travelerInfo = allTravelers.findElementById(3);
-  traveler = new Traveler(travelerInfo);
+  const userID = 7;
+  fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+  .then(response => response.json())
+  .then(data => {
+    traveler = new Traveler(data);
+    renderTravelerTrips();
+  })
 }
 
 const renderTravelerTrips = () => {
-  const allTrips = new DataRepo(sampleTrips);
-  const travelerTrips = allTrips.findTravelerData(traveler.id);
-  userTrips = new Trips(travelerTrips);
-  userTrips.sortTripsByDate();
-  userTrips.sortTripsByStatus();
+  fetch("http://localhost:3001/api/v1/trips")
+  .then(response => response.json())
+  .then(data => {
+    allTrips = new DataRepo(data.trips);
+    const travelerTrips = allTrips.findTravelerData(traveler.id);
+    userTrips = new Trips(travelerTrips);
+    userTrips.sortTripsByDate();
+    userTrips.sortTripsByStatus();
+    renderDestinations();
+  })
 }
 
 const renderDestinations = () => {
-  destinations = new DataRepo(samplePlaces);
+  fetch("http://localhost:3001/api/v1/destinations")
+  .then(response => response.json())
+  .then(data => {
+    destinations = new DataRepo(data.destinations);
+    displayTripOptions();
+    displayDashboard();
+  })
 }
 
 
@@ -70,6 +84,8 @@ const displayTrips = (section) => {
     let place = getDestinationInfo(trip.destinationID);
     let placeName = place.returnPlaceName();
     let tripCost = place.calculateTotalCost(trip.duration, trip.travelers)
+    let image = place.image;
+    let altText = place.alt;
     section.innerHTML += `<section class="trip-card">
       <h3> ${placeName} </h3>
       <table>
@@ -89,7 +105,14 @@ const displayTrips = (section) => {
           <th> Budget: </th>
           <td> $${tripCost} </td>
         </tr>
+        <tr>
+          <th> Status: </th>
+          <td> ${vacation.status} </td>
+        </tr>
       </table>
+      <div class=photo>
+      <img src=${image} alt=${altText}>
+      </div>
     </section>`
   })
 }
@@ -113,7 +136,6 @@ const getDestinationInfo = (id) => {
 }
 
 const toggleTabs = () => {
-  event.preventDefault();
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       var target = document.querySelector(tab.dataset.tabTarget);
@@ -125,7 +147,74 @@ const toggleTabs = () => {
   })
 };
 
+const displayTripOptions = () => {
+  const alphabetized = destinations.dataSet.sort((a, b) => {
+    return a.destination.localeCompare(b.destination);
+  })
+  alphabetized.forEach((place) => {
+    tripOptions.innerHTML += `
+    <option value=${place.id}>-- ${place.destination} --</option>`
+  })
+}
 
+const submitTripRequest = () => {
+  event.preventDefault();
+  if (checkValidity()) {
+    fetch("http://localhost:3001/api/v1/trips", {
+      method: 'POST',
+      body: JSON.stringify(
+        {
+          id: Number(allTrips.dataSet.length + 1),
+          userID: Number(traveler.id),
+          destinationID: Number(tripOptions.value),
+          travelers: Number(partySize.value),
+          date: pickDate.value.split("-").join("/"),
+          duration: Number(tripLength.value),
+          status: "pending",
+          suggestedActivities: []
+        }),
+      headers: {
+  	     'Content-Type': 'application/json'
+       }
+     })
+  .then(response => response.json())
+  .then(resetForm());
+  }
+}
+
+const resetForm = () => {
+  tripOptions.value = "";
+  pickDate.value = "";
+  tripLength.value = "";
+  partySize.value = "";
+  price.innerText = "$0.00";
+}
+
+
+const displayEstimate = () => {
+  if (checkValidity()) {
+    const estimate = calculatePrice();
+    price.innerText = `$${estimate}`;
+  }
+}
+
+const calculatePrice = () => {
+  // const validInput = checkValidity();
+  // if (validInput) {
+    const localeID = Number(tripOptions.value);
+    const days = Number(tripLength.value);
+    const people = Number(partySize.value);
+    const locale = destinations.findElementById(localeID);
+    const coolSpot = new Destination(locale);
+    const tripPrice = coolSpot.calculateTotalCost(days, people)
+    return tripPrice;
+}
+
+const checkValidity = () => {
+  if (tripOptions.value && pickDate.value && tripLength.value && partySize.value) {
+    return true;
+  }
+}
 //query selectors
 const greeting = document.querySelector("#greeting");
 const past = document.querySelector("#pastTrips");
@@ -133,5 +222,16 @@ const future = document.querySelector("#futureTrips");
 const pending = document.querySelector("#pendingTrips");
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");
+const tripOptions = document.querySelector("#tripOptions");
+const pickDate = document.querySelector("#pickDate");
+const tripLength = document.querySelector("#tripLength");
+const partySize = document.querySelector("#partySize");
+const price = document.querySelector("#price");
+const cancelButton = document.querySelector("#cancelButton");
+const submitButton = document.querySelector("#submitButton");
+const tripForm = document.querySelector("#tripForm");
 //event listeners
 window.addEventListener("load", renderDashboard);
+submitButton.addEventListener("click", submitTripRequest);
+cancelButton.addEventListener("click", resetForm);
+tripForm.addEventListener("click", displayEstimate);
