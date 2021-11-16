@@ -23,29 +23,44 @@ let destinations;
 // let location;
 
 const renderDashboard = () => {
-  renderDestinations();
   renderTravelerData();
-  renderTravelerTrips();
-  displayDashboard();
 }
 
 //render functions
 const renderTravelerData = () => {
+  const userID = 7;
+  fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    traveler = new Traveler(data);
+    renderTravelerTrips();
+  })
   const allTravelers = new DataRepo(sampleTravelers);
   const travelerInfo = allTravelers.findElementById(3);
-  traveler = new Traveler(travelerInfo);
 }
 
 const renderTravelerTrips = () => {
-  const allTrips = new DataRepo(sampleTrips);
-  const travelerTrips = allTrips.findTravelerData(traveler.id);
-  userTrips = new Trips(travelerTrips);
-  userTrips.sortTripsByDate();
-  userTrips.sortTripsByStatus();
+  fetch("http://localhost:3001/api/v1/trips")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    let allTrips = new DataRepo(data.trips)
+    const travelerTrips = allTrips.findTravelerData(traveler.id);
+    userTrips = new Trips(travelerTrips);
+    userTrips.sortTripsByDate();
+    userTrips.sortTripsByStatus();
+    renderDestinations();
+  })
 }
 
 const renderDestinations = () => {
-  destinations = new DataRepo(samplePlaces);
+  fetch("http://localhost:3001/api/v1/destinations")
+  .then(response => response.json())
+  .then(data => {
+    destinations = new DataRepo(data.destinations);
+    displayDashboard();
+  })
 }
 
 
@@ -55,10 +70,11 @@ const displayDashboard = () => {
   displayTrips(past);
   displayTrips(future);
   displayTrips(pending);
-  toggleTabs();
+  toggleTabs(event);
 }
 
 const displayGreeting = () => {
+  console.log("traveler", traveler)
   const firstName = traveler.getFirstName();
   greeting.innerText = `Welcome back, ${firstName}!`;
 }
@@ -114,7 +130,6 @@ const getDestinationInfo = (id) => {
 }
 
 const toggleTabs = () => {
-  event.preventDefault();
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       var target = document.querySelector(tab.dataset.tabTarget);
