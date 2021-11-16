@@ -18,6 +18,7 @@ import {
 // const greeting = document.querySelector("#greeting");
 
 let traveler;
+let allTrips;
 let userTrips;
 let destinations;
 // let location;
@@ -32,7 +33,6 @@ const renderTravelerData = () => {
   fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     traveler = new Traveler(data);
     renderTravelerTrips();
   })
@@ -42,8 +42,7 @@ const renderTravelerTrips = () => {
   fetch("http://localhost:3001/api/v1/trips")
   .then(response => response.json())
   .then(data => {
-    console.log(data);
-    let allTrips = new DataRepo(data.trips)
+    allTrips = new DataRepo(data.trips);
     const travelerTrips = allTrips.findTravelerData(traveler.id);
     userTrips = new Trips(travelerTrips);
     userTrips.sortTripsByDate();
@@ -151,12 +150,39 @@ const displayTripOptions = () => {
   })
   alphabetized.forEach((place) => {
     tripOptions.innerHTML += `
-    <option value=${place.destination}>-- ${place.destination} --</option>`
+    <option value=${place.id}>-- ${place.destination} --</option>`
   })
 }
 
+const submitTripRequest = () => {
+  if (checkValidity()) {
+    const tripRequest = {
+      id: Number(allTrips.data.length + 1),
+      userID: Number(traveler.id),
+      destinationID: Number(tripOption.value),
+      travelers: Number(partySize.value),
+      date: pickDate.value,
+      duration: Number(tripLength.value),
+      status: "pending",
+      suggestActivities: []
+    };
+  
+    fetch("http://localhost:3001/api/v1/trips", {
+      method: 'POST',
+      body: JSON.stringify(someDataToSend), // remember how HTTP can only send and receive strings, just like localStorage?
+      headers: {
+  	     'Content-Type': 'application/json'
+       }
+     })
+  .then(response => response.json())
+  }
+}
 
-
+const checkValidity = () => {
+  if (tripOptions.value && pickDate.value && tripLength.value && partySize.value) {
+    return true;
+  }
+}
 
 //query selectors
 const greeting = document.querySelector("#greeting");
@@ -174,3 +200,4 @@ const cancelButton = document.querySelector("#cancelButton");
 const submitButton = document.querySelector("#submitButton");
 //event listeners
 window.addEventListener("load", renderDashboard);
+submitButton.addEventListener("click", submitTripRequest);
