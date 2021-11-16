@@ -17,7 +17,7 @@ let traveler;
 let allTrips;
 let userTrips;
 let destinations;
-// let location;
+let requestForm;
 
 const renderDashboard = () => {
   renderTravelerData();
@@ -65,6 +65,7 @@ const displayDashboard = () => {
   displayTrips(future);
   displayTrips(pending);
   toggleTabs();
+  makeModal();
 }
 
 const displayGreeting = () => {
@@ -143,6 +144,10 @@ const toggleTabs = () => {
   })
 };
 
+const makeModal = () => {
+  MicroModal.show("modal-1")
+}
+
 const displayTripOptions = () => {
   const alphabetized = destinations.dataSet.sort((a, b) => {
     return a.destination.localeCompare(b.destination);
@@ -175,8 +180,9 @@ const submitTripRequest = () => {
      })
   .then(response => response.json())
   .then(pending.innerHTML = "")
-  .then(renderDashboard());
-  .then(resetForm());
+  .then(resetForm())
+  .then(renderDashboard())
+  .then(MicroModal.close("modal-1"))
   }
 }
 
@@ -226,6 +232,7 @@ const price = document.querySelector("#price");
 const cancelButton = document.querySelector("#cancelButton");
 const submitButton = document.querySelector("#submitButton");
 const tripForm = document.querySelector("#tripForm");
+const modal = document.querySelector("#modal-1")
 //event listeners
 window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);

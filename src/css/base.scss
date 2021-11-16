@@ -43,8 +43,6 @@ h1 {
 
 .left-side {
     grid-column: 1 / 2;
-    // padding: 2rem;
-    // background-color: v.$med-cool;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -114,22 +112,28 @@ h1 {
 img {
   max-width: 250px;
   height: auto;
-  // padding: 5%;
 }
 
 .right-side {
   grid-column: 2 / 4;
   padding: 2rem;
-  background-color: v.$med-warm;
+  background-color: v.$med-cool;
   display: flex;
   justify-content: space-between;
 }
 
-.book-trip {
-  background-color: v.$light-warm;
+.plan-adventure {
   display: flex;
-  padding: 2rem;
-  overflow: auto;
+  flex-direction: column;
+  align-items: center;
+  color: v.$dark;
+  font-size: larger;
+    button {
+      background-color: inherit;
+      color: inherit;
+      border: none;
+      font-size: 350pt;
+    }
 }
 
 .form-header {
@@ -137,10 +141,45 @@ img {
   align-content: center;
 }
 
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  grid-column: 3 / 4;
+  background-color: v.$light-warm;
+  display: block;
+  padding: 2rem;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  border: outset 6px lightgray;
+  border-radius: 6px;
+  }
+
+  .close-modal {
+  background-color: inherit;
+  color: darkred;
+  font-weight: bold;
+  font-size: larger;
+  border: none;
+}
+
 form {
+  flex-grow: 1;
+  width: 18rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: space-between;
+}
+
+input,
+select,
+label {
+  padding: .3rem;
+  margin-top: .5rem;
+  font-size: large;
 }
 
 .price {
