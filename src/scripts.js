@@ -36,8 +36,6 @@ const renderTravelerData = () => {
     traveler = new Traveler(data);
     renderTravelerTrips();
   })
-  const allTravelers = new DataRepo(sampleTravelers);
-  const travelerInfo = allTravelers.findElementById(3);
 }
 
 const renderTravelerTrips = () => {
@@ -59,6 +57,7 @@ const renderDestinations = () => {
   .then(response => response.json())
   .then(data => {
     destinations = new DataRepo(data.destinations);
+    displayTripOptions();
     displayDashboard();
   })
 }
@@ -70,7 +69,7 @@ const displayDashboard = () => {
   displayTrips(past);
   displayTrips(future);
   displayTrips(pending);
-  toggleTabs(event);
+  toggleTabs();
 }
 
 const displayGreeting = () => {
@@ -146,6 +145,16 @@ const toggleTabs = () => {
   })
 };
 
+const displayTripOptions = () => {
+  const alphabetized = destinations.dataSet.sort((a, b) => {
+    return a.destination.localeCompare(b.destination);
+  })
+  alphabetized.forEach((place) => {
+    tripOptions.innerHTML += `
+    <option value=${place.destination}>-- ${place.destination} --</option>`
+  })
+}
+
 
 //query selectors
 const greeting = document.querySelector("#greeting");
@@ -154,5 +163,6 @@ const future = document.querySelector("#futureTrips");
 const pending = document.querySelector("#pendingTrips");
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");
+const tripOptions = document.querySelector("#tripOptions")
 //event listeners
 window.addEventListener("load", renderDashboard);
