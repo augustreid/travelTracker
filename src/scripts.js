@@ -9,11 +9,7 @@ import DataRepo from "../src/DataRepo.js";
 import SingleTrip from "../src/SingleTrip.js";
 import Traveler from "../src/Traveler.js";
 import Destination from "../src/Destination.js";
-import {
-  sampleTravelers,
-  samplePlaces,
-  sampleTrips
-} from "../src/dummyData.js";
+
 
 // const greeting = document.querySelector("#greeting");
 
@@ -178,6 +174,8 @@ const submitTripRequest = () => {
        }
      })
   .then(response => response.json())
+  .then(pending.innerHTML = "")
+  .then(renderDashboard());
   .then(resetForm());
   }
 }
@@ -199,8 +197,6 @@ const displayEstimate = () => {
 }
 
 const calculatePrice = () => {
-  // const validInput = checkValidity();
-  // if (validInput) {
     const localeID = Number(tripOptions.value);
     const days = Number(tripLength.value);
     const people = Number(partySize.value);
