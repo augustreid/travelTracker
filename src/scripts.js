@@ -72,7 +72,6 @@ const displayDashboard = () => {
 }
 
 const displayGreeting = () => {
-  console.log("traveler", traveler)
   const firstName = traveler.getFirstName();
   greeting.innerText = `Welcome back, ${firstName}!`;
 }
@@ -155,26 +154,27 @@ const displayTripOptions = () => {
 }
 
 const submitTripRequest = () => {
+  event.preventDefault();
   if (checkValidity()) {
-    const tripRequest = {
-      id: Number(allTrips.data.length + 1),
-      userID: Number(traveler.id),
-      destinationID: Number(tripOption.value),
-      travelers: Number(partySize.value),
-      date: pickDate.value,
-      duration: Number(tripLength.value),
-      status: "pending",
-      suggestActivities: []
-    };
-  
     fetch("http://localhost:3001/api/v1/trips", {
       method: 'POST',
-      body: JSON.stringify(someDataToSend), // remember how HTTP can only send and receive strings, just like localStorage?
+      body: JSON.stringify(
+        {
+          id: Number(allTrips.dataSet.length + 1),
+          userID: Number(traveler.id),
+          destinationID: Number(tripOptions.value),
+          travelers: Number(partySize.value),
+          date: pickDate.value.split("-").join("/"),
+          duration: Number(tripLength.value),
+          status: "pending",
+          suggestedActivities: []
+        }),
       headers: {
   	     'Content-Type': 'application/json'
        }
      })
   .then(response => response.json())
+  .then(console.log(allTrips))
   }
 }
 
