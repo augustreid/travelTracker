@@ -190,12 +190,31 @@ const resetForm = () => {
   price.innerText = "$0.00";
 }
 
+
+const displayEstimate = () => {
+  if (checkValidity()) {
+    const estimate = calculatePrice();
+    price.innerText = `$${estimate}`;
+  }
+}
+
+const calculatePrice = () => {
+  // const validInput = checkValidity();
+  // if (validInput) {
+    const localeID = Number(tripOptions.value);
+    const days = Number(tripLength.value);
+    const people = Number(partySize.value);
+    const locale = destinations.findElementById(localeID);
+    const coolSpot = new Destination(locale);
+    const tripPrice = coolSpot.calculateTotalCost(days, people)
+    return tripPrice;
+}
+
 const checkValidity = () => {
   if (tripOptions.value && pickDate.value && tripLength.value && partySize.value) {
     return true;
   }
 }
-
 //query selectors
 const greeting = document.querySelector("#greeting");
 const past = document.querySelector("#pastTrips");
@@ -210,7 +229,9 @@ const partySize = document.querySelector("#partySize");
 const price = document.querySelector("#price");
 const cancelButton = document.querySelector("#cancelButton");
 const submitButton = document.querySelector("#submitButton");
+const tripForm = document.querySelector("#tripForm");
 //event listeners
 window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
+tripForm.addEventListener("click", displayEstimate);
