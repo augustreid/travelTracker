@@ -87,6 +87,8 @@ const displayTrips = (section) => {
     let place = getDestinationInfo(trip.destinationID);
     let placeName = place.returnPlaceName();
     let tripCost = place.calculateTotalCost(trip.duration, trip.travelers)
+    let image = place.image;
+    let altText = place.alt;
     section.innerHTML += `<section class="trip-card">
       <h3> ${placeName} </h3>
       <table>
@@ -107,6 +109,9 @@ const displayTrips = (section) => {
           <td> $${tripCost} </td>
         </tr>
       </table>
+      <div class=photo>
+      <img src=${image} alt=${altText}>
+      </div>
     </section>`
   })
 }
