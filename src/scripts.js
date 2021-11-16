@@ -105,6 +105,10 @@ const displayTrips = (section) => {
           <th> Budget: </th>
           <td> $${tripCost} </td>
         </tr>
+        <tr>
+          <th> Status: </th>
+          <td> ${vacation.status} </td>
+        </tr>
       </table>
       <div class=photo>
       <img src=${image} alt=${altText}>
@@ -174,8 +178,16 @@ const submitTripRequest = () => {
        }
      })
   .then(response => response.json())
-  .then(console.log(allTrips))
+  .then(resetForm());
   }
+}
+
+const resetForm = () => {
+  tripOptions.value = "";
+  pickDate.value = "";
+  tripLength.value = "";
+  partySize.value = "";
+  price.innerText = "$0.00";
 }
 
 const checkValidity = () => {
@@ -201,3 +213,4 @@ const submitButton = document.querySelector("#submitButton");
 //event listeners
 window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
+cancelButton.addEventListener("click", resetForm);
