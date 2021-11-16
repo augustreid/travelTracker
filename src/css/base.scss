@@ -16,7 +16,6 @@ body {
   grid-column: 1 / 4;
   background-color: white;
   color: v.$dark;
-  // border-bottom: solid 6px v.$dark;
 }
 
 button {
@@ -43,6 +42,7 @@ h1 {
 
 .left-side {
     grid-column: 1 / 2;
+    flex: 1 1;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -60,26 +60,26 @@ h1 {
 
 .tab-content {
   display: flex;
-  flex-grow: 1;
+  flex: 1 1;
   width: inherit;
 }
 
   .past-trips {
     background-color: #E3E7F2;
     border-color: #E3E7F2;
-    flex-grow: 1;
+    flex: 1 1;
   }
 
   .future-trips {
     background-color: v.$light-warm;
     border-color: v.$light-warm;
-    flex-grow: 1;
+    flex: 1 1;
   }
 
   .pending-trips {
     background-color: rgb(251, 221, 216);
     border-color: rgb(251, 221, 216);
-    flex-grow: 1;
+    flex: 1 1;
   }
 
   .trip-buttons {
@@ -116,19 +116,23 @@ img {
 
 .right-side {
   grid-column: 2 / 4;
+  flex: 1 1;
   padding: 2rem;
   background-color: v.$med-cool;
   display: flex;
   justify-content: space-between;
+  overflow: auto;
 }
 
 .plan-adventure {
+  flex: 1 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: v.$dark;
   font-size: larger;
     button {
+      flex: 1 1 350px;
       background-color: inherit;
       color: inherit;
       border: none;
@@ -146,13 +150,16 @@ img {
 }
 
 .modal.is-open {
-  grid-column: 3 / 4;
+  flex-shrink: 1;
   background-color: v.$light-warm;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 2rem;
-  overflow: auto;
-  width: auto;
+  min-width: 15rem;
   height: auto;
+  overflow: auto;
   border: outset 6px lightgray;
   border-radius: 6px;
   }
@@ -166,7 +173,7 @@ img {
 }
 
 form {
-  flex-grow: 1;
+  flex: 1 1;
   width: 18rem;
   display: flex;
   flex-direction: column;
