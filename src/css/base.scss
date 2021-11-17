@@ -1,5 +1,6 @@
 /* This is an example of how to import a partial scss file*/
 @use "_variables" as v;
+@use "_mixins" as m;
 
 body {
   display: grid;
@@ -9,9 +10,7 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include m.flexbox(row, space-between, center);
   padding: 1rem;
   grid-column: 1 / 4;
   background-color: white;
