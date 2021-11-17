@@ -117,7 +117,7 @@ const displayTrips = (section) => {
 
 const displayYearTotal = () => {
   const yearTotal = calculateYearTotal();
-  spentThisYear.innerHTML = `You spent too much, dumbass: $${yearTotal}`
+  spentThisYear.innerText = `You have spent $${yearTotal} on travel this year.`
 }
 
 const calculateYearTotal = () => {
