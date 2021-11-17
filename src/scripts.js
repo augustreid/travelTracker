@@ -1,7 +1,3 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import MicroModal from "micromodal";
 import Trips from '../src/Trips.js';
@@ -9,9 +5,6 @@ import DataRepo from "../src/DataRepo.js";
 import SingleTrip from "../src/SingleTrip.js";
 import Traveler from "../src/Traveler.js";
 import Destination from "../src/Destination.js";
-
-
-// const greeting = document.querySelector("#greeting");
 
 let traveler;
 let allTrips;
@@ -48,34 +41,34 @@ const renderDashboard = (idNumber) => {
 const renderTravelerData = (idNumber) => {
   const userID = idNumber;
   fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
-  .then(response => response.json())
-  .then(data => {
-    traveler = new Traveler(data);
-    renderTravelerTrips();
-  })
+    .then(response => response.json())
+    .then(data => {
+      traveler = new Traveler(data);
+      renderTravelerTrips();
+    })
 }
 
 const renderTravelerTrips = () => {
   fetch("http://localhost:3001/api/v1/trips")
-  .then(response => response.json())
-  .then(data => {
-    allTrips = new DataRepo(data.trips);
-    const travelerTrips = allTrips.findTravelerData(traveler.id);
-    userTrips = new Trips(travelerTrips);
-    userTrips.sortTripsByDate();
-    userTrips.sortTripsByStatus();
-    renderDestinations();
-  })
+    .then(response => response.json())
+    .then(data => {
+      allTrips = new DataRepo(data.trips);
+      const travelerTrips = allTrips.findTravelerData(traveler.id);
+      userTrips = new Trips(travelerTrips);
+      userTrips.sortTripsByDate();
+      userTrips.sortTripsByStatus();
+      renderDestinations();
+    })
 }
 
 const renderDestinations = () => {
   fetch("http://localhost:3001/api/v1/destinations")
-  .then(response => response.json())
-  .then(data => {
-    destinations = new DataRepo(data.destinations);
-    displayTripOptions();
-    displayDashboard();
-  })
+    .then(response => response.json())
+    .then(data => {
+      destinations = new DataRepo(data.destinations);
+      displayTripOptions();
+      displayDashboard();
+    })
 }
 
 
@@ -138,7 +131,7 @@ const displayTrips = (section) => {
 
 const displayYearTotal = () => {
   const yearTotal = calculateYearTotal();
-  spentThisYear.innerHTML = `You spent too much, dumbass: $${yearTotal}`
+  spentThisYear.innerText = `You have spent $${yearTotal} on travel this year.`
 }
 
 const calculateYearTotal = () => {
@@ -194,8 +187,13 @@ const toggleTabs = () => {
 };
 
 const makeModal = () => {
+  MicroModal.init("modal-1")
+}
+
+const showTripForm = () => {
   MicroModal.show("modal-1")
 }
+
 
 const displayTripOptions = () => {
   const alphabetized = destinations.dataSet.sort((a, b) => {
@@ -211,9 +209,8 @@ const submitTripRequest = () => {
   event.preventDefault();
   if (checkValidity()) {
     fetch("http://localhost:3001/api/v1/trips", {
-      method: 'POST',
-      body: JSON.stringify(
-        {
+        method: 'POST',
+        body: JSON.stringify({
           id: Number(allTrips.dataSet.length + 1),
           userID: Number(traveler.id),
           destinationID: Number(tripOptions.value),
@@ -223,15 +220,15 @@ const submitTripRequest = () => {
           status: "pending",
           suggestedActivities: []
         }),
-      headers: {
-  	     'Content-Type': 'application/json'
-       }
-     })
-  .then(response => response.json())
-  .then(pending.innerHTML = "")
-  .then(resetForm())
-  .then(renderDashboard())
-  .then(MicroModal.close("modal-1"))
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(pending.innerHTML = "")
+      .then(resetForm())
+      .then(renderDashboard())
+      .then(MicroModal.close("modal-1"))
   }
 }
 
@@ -252,13 +249,13 @@ const displayEstimate = () => {
 }
 
 const calculatePrice = () => {
-    const localeID = Number(tripOptions.value);
-    const days = Number(tripLength.value);
-    const people = Number(partySize.value);
-    const locale = destinations.findElementById(localeID);
-    const coolSpot = new Destination(locale);
-    const tripPrice = coolSpot.calculateTotalCost(days, people)
-    return tripPrice;
+  const localeID = Number(tripOptions.value);
+  const days = Number(tripLength.value);
+  const people = Number(partySize.value);
+  const locale = destinations.findElementById(localeID);
+  const coolSpot = new Destination(locale);
+  const tripPrice = coolSpot.calculateTotalCost(days, people)
+  return tripPrice;
 }
 
 const checkValidity = () => {
@@ -283,6 +280,7 @@ const submitButton = document.querySelector("#submitButton");
 const tripForm = document.querySelector("#tripForm");
 const modal = document.querySelector("#modal-1")
 const spentThisYear = document.querySelector("#spentThisYear");
+const showFormButton = document.querySelector("#showForm");
 const loginPage = document.querySelector("#loginPage");
 const username = document.querySelector("#username");
 const password = document.querySelector("#password");
@@ -295,4 +293,5 @@ const mainBody = document.querySelector("#mainBody");
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);
+showFormButton.addEventListener("click", showTripForm);
 loginButton.addEventListener("click", onSubmit);
