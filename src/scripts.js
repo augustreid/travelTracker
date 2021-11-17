@@ -27,7 +27,9 @@ const onSubmit = () => {
     travelerID = Number(userId)
     renderDashboard(travelerID)
   } else {
-    alert("try again")
+    loginError.innerText = "Please enter a valid username and password!"
+    username.value = "";
+    password.value = "";
   }
 }
 
