@@ -31,6 +31,8 @@ const onSubmit = () => {
     //hide input form
     loginPage.classList.add("hidden");
     mainBody.classList.remove("hidden");
+    let travelerID = Number(userId)
+    renderDashboard(travelerID)
     //show main body
     //communicate userID to first fetch for user
   } else {
@@ -38,13 +40,13 @@ const onSubmit = () => {
   }
 }
 
-const renderDashboard = () => {
-  renderTravelerData();
+const renderDashboard = (idNumber) => {
+  renderTravelerData(idNumber);
 }
 
 //render functions
-const renderTravelerData = () => {
-  const userID = 9;
+const renderTravelerData = (idNumber) => {
+  const userID = idNumber;
   fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
   .then(response => response.json())
   .then(data => {
@@ -289,7 +291,7 @@ const welcomeMessage = document.querySelector("#welcome");
 const mainBody = document.querySelector("#mainBody");
 
 //event listeners
-window.addEventListener("load", renderDashboard);
+// window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);
