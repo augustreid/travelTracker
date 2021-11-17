@@ -10,6 +10,21 @@
   width: 100%;
 }
 
+.login-page {
+  @include m.flexbox(column, center, center);
+  height: 100vh;
+  background-color: v.$med-warm;
+  form {
+    @include m.flexbox(column, center, center);
+  }
+}
+
+.login-form {
+  @include m.flexbox(column, space-between, center);
+  background-color: v.$light-warm;
+  padding: 3rem;
+}
+
 header {
   @include m.flexbox(row, space-between, center);
   padding: 1rem;
