@@ -123,6 +123,8 @@ img {
   display: flex;
   justify-content: space-between;
   overflow: auto;
+  border-top: solid 4px v.$dark;
+  border-left: groove 4px v.$dark;
 }
 
 .plan-adventure {
