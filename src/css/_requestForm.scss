@@ -1,0 +1,72 @@
+@use "_mixins" as m;
+@use "_variables" as v;
+
+.form-header {
+  background-color: inherit;
+  align-content: center;
+  display: flex;
+  font-size: 20pt;
+}
+
+.modal.is-open {
+  flex-shrink: 1;
+  background-color: v.$light-warm;
+  @include m.flexbox(column, space-between, center);
+  padding: 2rem;
+  min-width: 15rem;
+  height: auto;
+  overflow: auto;
+  @include m.card-border
+}
+
+.close-modal {
+  background-color: inherit;
+  color: darkred;
+  font-weight: bolder;
+  font-size: 20pt;
+  border: none;
+}
+
+form {
+  flex: v.$flex1;
+  width: 18rem;
+  @include m.flexbox(column, space-between, space-between);
+}
+
+input,
+label,
+select {
+  padding: 0.3rem;
+  margin-top: 0.5rem;
+  font-size: large;
+}
+
+.price {
+  @include m.flexbox(row, space-between, center);
+  p {
+    background-color: white;
+    font-size: larger;
+    padding: 0 3%;
+    border: solid 1px gray;
+  }
+}
+
+.form-buttons {
+  @include m.flexbox(row, space-around, center);
+  padding: 1rem;
+  button {
+    background-color: white;
+    color: v.$dark;
+    font-size: larger;
+    padding: 2%;
+    border-radius: 3px;
+  }
+}
+
+.submit {
+  border: outset 4px rgb(91, 177, 102);
+}
+
+.cancel {
+  border: solid 3px darkred;
+}

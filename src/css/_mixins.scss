@@ -4,3 +4,8 @@
   justify-content: $justify;
   align-items: $align;
 }
+
+@mixin card-border {
+  border: outset 5px lightgray;
+  border-radius: 6px;
+}
