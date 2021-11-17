@@ -10,11 +10,25 @@
 </head>
 
 <body>
+  <div>
+    <form>
+      <label>
+        Username:
+        <input type="text" id="username">
+      </label>
+      <label>
+        Password:
+        <input type="text" id="password">
+      </label>
+      <button type="submit" id="loginButton"> Submit </button>
+    </form>
+  </div>
+  <div id="main-body" class="hidden">
   <header>
     <h1><i class="fas fa-rocket"></i> TRVL.</h1>
     <span class="welcome">
       <h2 id="greeting"> Welcome, Traveler! </h2>
-        <p id="spentThisYear">sample</p>
+      <p id="spentThisYear">sample</p>
       <i class="fas fa-user-astronaut"></i>
     </span>
   </header>
@@ -80,6 +94,7 @@
     </div>
 
   </main>
+</div>
   <!-- <footer>Footer</footer> -->
 
   <script src="bundle.js"></script>

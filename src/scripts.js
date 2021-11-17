@@ -19,6 +19,22 @@ let userTrips;
 let destinations;
 let requestForm;
 
+const onSubmit = () => {
+  const usernameInput = username.value;
+  const passwordInput = password.value;
+  let userId;
+  if (usernameInput.includes("traveler")) {
+    userId = unsernameInput.split("traveler")[1]
+  }
+  if (passwordInput === "travel" && userID) {
+    //hide input form
+    //show main body
+    //communicate userID to first fetch for user
+  } else {
+    alert("try again")
+  }
+}
+
 const renderDashboard = () => {
   renderTravelerData();
 }
@@ -262,8 +278,13 @@ const submitButton = document.querySelector("#submitButton");
 const tripForm = document.querySelector("#tripForm");
 const modal = document.querySelector("#modal-1")
 const spentThisYear = document.querySelector("#spentThisYear");
+const username = document.querySelector("#username");
+const password = document.querySelector("#password");
+const loginButton = document.querySelector("#loginButton");
+
 //event listeners
 window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);
+loginButton.addEventListener("click", onSubmit);
