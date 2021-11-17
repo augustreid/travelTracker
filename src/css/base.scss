@@ -8,7 +8,7 @@ body {
   width: 100%;
 }
 
- header {
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,12 +27,13 @@ button {
   justify-content: space-between;
   align-items: center;
   font-size: 12pt;
-    margin: 0 3%;
-    i {
-      font-size: 32pt;
-      margin-left: 15px;
-    }
+  margin: 0 3%;
+
+  i {
+    font-size: 32pt;
+    margin-left: 15px;
   }
+}
 
 h1 {
   display: inline;
@@ -41,22 +42,22 @@ h1 {
 }
 
 .left-side {
-    grid-column: 1 / 2;
-    flex: 1 1;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-  }
+  grid-column: 1 / 2;
+  flex: 1 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
 
-  [data-tab-content] {
-    border: solid 2rem;
-    display: none;
-  }
+[data-tab-content] {
+  border: solid 2rem;
+  display: none;
+}
 
-  .active[data-tab-content] {
-    display: inherit;
-  }
+.active[data-tab-content] {
+  display: inherit;
+}
 
 .tab-content {
   display: flex;
@@ -64,38 +65,38 @@ h1 {
   width: inherit;
 }
 
-  .past-trips {
-    background-color: #E3E7F2;
-    border-color: #E3E7F2;
-    flex: 1 1;
-  }
+.past-trips {
+  background-color: #E3E7F2;
+  border-color: #E3E7F2;
+  flex: 1 1;
+}
 
-  .future-trips {
-    background-color: v.$light-warm;
-    border-color: v.$light-warm;
-    flex: 1 1;
-  }
+.future-trips {
+  background-color: v.$light-warm;
+  border-color: v.$light-warm;
+  flex: 1 1;
+}
 
-  .pending-trips {
-    background-color: rgb(251, 221, 216);
-    border-color: rgb(251, 221, 216);
-    flex: 1 1;
-  }
+.pending-trips {
+  background-color: rgb(251, 221, 216);
+  border-color: rgb(251, 221, 216);
+  flex: 1 1;
+}
 
-  .trip-buttons {
-    display: flex;
-    justify-content: center;
-      button {
-        height: 30px;
-        color: v.$dark;
-        font-size: medium;
-        font-weight: bold;
-        border: solid 3px v.$dark;
-        border-bottom: none;
-        margin-left: 2px;
-      }
-  }
+.trip-buttons {
+  display: flex;
+  justify-content: center;
 
+  button {
+    height: 30px;
+    color: v.$dark;
+    font-size: medium;
+    font-weight: bold;
+    border: solid 3px v.$dark;
+    border-bottom: none;
+    margin-left: 2px;
+  }
+}
 
 .trip-card {
   flex: 1 1 150px;
@@ -131,13 +132,14 @@ img {
   align-items: center;
   color: v.$dark;
   font-size: larger;
-    button {
-      flex: 1 1 350px;
-      background-color: inherit;
-      color: inherit;
-      border: none;
-      font-size: 350pt;
-    }
+
+  button {
+    flex: 1 1 350px;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    font-size: 350pt;
+  }
 }
 
 .form-header {
@@ -162,9 +164,9 @@ img {
   overflow: auto;
   border: outset 6px lightgray;
   border-radius: 6px;
-  }
+}
 
-  .close-modal {
+.close-modal {
   background-color: inherit;
   color: darkred;
   font-weight: bold;
@@ -182,34 +184,42 @@ form {
 }
 
 input,
-select,
-label {
-  padding: .3rem;
-  margin-top: .5rem;
+label,
+select {
+  padding: 0.3rem;
+  margin-top: 0.5rem;
   font-size: large;
 }
 
 .price {
   display: flex;
   justify-content: space-between;
-    p  {
-      background-color: white;
-      font-size: larger;
-      padding: 0 3%;
-      border: solid 1px gray;
-    }
+
+  p {
+    background-color: white;
+    font-size: larger;
+    padding: 0 3%;
+    border: solid 1px gray;
+  }
 }
 
 .form-buttons {
   display: flex;
   justify-content: space-around;
+  padding: 1rem;
+    button {
+      background-color: white;
+      color: v.$dark;
+      font-size: larger;
+      padding: 2%;
+      border-radius: 3px;
+    }
 }
 
-  footer {
-    grid-column: 1 / 4;
-    padding: 5rem;
-    background-color: v.$light-cool;
+.submit {
+  border: outset 4px rgb(91, 177, 102);
   }
+
 
 .hidden {
   display: none;

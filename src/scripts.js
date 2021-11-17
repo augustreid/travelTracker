@@ -173,8 +173,14 @@ const toggleTabs = () => {
 };
 
 const makeModal = () => {
+  MicroModal.init("modal-1")
+  // MicroModal.close("modal-1")
+}
+
+const showTripForm = () => {
   MicroModal.show("modal-1")
 }
+
 
 const displayTripOptions = () => {
   const alphabetized = destinations.dataSet.sort((a, b) => {
@@ -262,8 +268,10 @@ const submitButton = document.querySelector("#submitButton");
 const tripForm = document.querySelector("#tripForm");
 const modal = document.querySelector("#modal-1")
 const spentThisYear = document.querySelector("#spentThisYear");
+const showFormButton = document.querySelector("#showForm");
 //event listeners
 window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);
+showFormButton.addEventListener("click", showTripForm);
