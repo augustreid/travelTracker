@@ -60,6 +60,15 @@ describe('Trips', () => {
         "duration": 17,
         "status": "pending",
         "suggestedActivities": []
+      }, {
+        "id": 41,
+        "userID": 3,
+        "destinationID": 25,
+        "travelers": 3,
+        "date": "2020/08/30",
+        "duration": 11,
+        "status": "pending",
+        "suggestedActivities": []
       }])
   })
 
@@ -67,15 +76,6 @@ describe('Trips', () => {
     user3Trips.sortTripsByStatus();
     expect(user3Trips.approved).to.deep.equal(
       [{
-        "id": 41,
-        "userID": 3,
-        "destinationID": 25,
-        "travelers": 3,
-        "date": "2020/08/30",
-        "duration": 11,
-        "status": "approved",
-        "suggestedActivities": []
-      }, {
         "id": 50,
         "userID": 3,
         "destinationID": 16,
@@ -120,7 +120,7 @@ describe('Trips', () => {
       "travelers": 3,
       "date": "2020/08/30",
       "duration": 11,
-      "status": "approved",
+      "status": "pending",
       "suggestedActivities": []
     }, {
       "id": 50,
