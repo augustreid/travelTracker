@@ -1,6 +1,6 @@
 # TRVL.
 
-Project Manager: Cassandra Torske
+Project Manager: [Cassandra Torske](https://github.com/CassandraGoose)
 
 ## Table of Contents
   - [Abstract](#abstract)
@@ -40,17 +40,22 @@ accessible UI, and practicing the code review process with another student.
   in the `username field`, and "travel" in the `password field`.
   If login credentials are valid, the user's TRVL. dashboard will be displayed.
 
-  <img width="1435" alt="new_dashboard_c_week_view" src="https://user-images.githubusercontent.com/83175748/140831188-c1e65493-d252-445d-9153-5dcf13204d0d.png">
+  <img width="1202" alt="Screen Shot 2021-11-17 at 1 31 16 AM" src="https://user-images.githubusercontent.com/87552193/142165578-9338252b-c8ef-4f78-94c1-e26efee1becb.png">
 
-  <img width="1142" alt="navbar_info_date" src="https://user-images.githubusercontent.com/83175748/140830839-0895ed95-973f-4eab-bea6-17d26b4905d3.png">
 
-The lefthand side of the app displays all of the user's trips, which are sorted
-into tabs for `previous`, `upcoming`, and `pending`. The user can click a tab
-to view the trips in that category. Each trip is displayed with a destination,
-date, duration, number of travelers, and cost (which includes a 10% agent fee),
-and an image that represents the destination.
+  <img width="1195" alt="Screen Shot 2021-11-17 at 1 31 59 AM" src="https://user-images.githubusercontent.com/87552193/142165610-518747d4-2a1b-4c17-99c2-8d13e8783d29.png">
 
-  <img width="292" alt="new_sidebar_profile" src="https://user-images.githubusercontent.com/83175748/140831109-c0620726-606a-4b3b-949b-fceab808d725.png">
+
+  The lefthand side of the app displays all of the user's trips, which are sorted
+  into tabs for `previous`, `upcoming`, and `pending`. The user can click a tab
+  to view the trips in that category. Each trip is displayed with a destination,
+  date, duration, number of travelers, and cost (which includes a 10% agent fee),
+  and an image that represents the destination.
+
+  <img width="1391" alt="Screen Shot 2021-11-17 at 1 32 56 AM" src="https://user-images.githubusercontent.com/87552193/142165665-7f467c86-2dba-43fa-80bd-0036f5b6dc1b.png">
+
+
+  <img width="402" alt="Screen Shot 2021-11-17 at 1 33 28 AM" src="https://user-images.githubusercontent.com/87552193/142165730-5ddb0cf7-eb6f-4811-a611-fdccb0cdc9d7.png">
 
   At the top of the central section of the app, the user will get a message
   informing them of how much money they have spent on trips for the year 2021.
@@ -62,15 +67,17 @@ and an image that represents the destination.
   a box at the bottom will populate with an estimated price for the trip,
   including the 10% agent fee.
 
+  <img width="1438" alt="Screen Shot 2021-11-17 at 1 34 57 AM" src="https://user-images.githubusercontent.com/87552193/142165767-59bccb5d-2c2d-440c-b7f3-da993947acd4.png">
+
   If the user clicks the `Book trip!` button, the new trip will be added to
   their trips and displayed in the `pending` tab.
+
+  <img width="1126" alt="Screen Shot 2021-11-17 at 1 35 36 AM" src="https://user-images.githubusercontent.com/87552193/142165800-45da7042-0e5f-4dfd-8961-cea6bd4426aa.png">
 
   If the user wants to clear the trip request form rather than submit it,
   they can click the `Cancel` button and the input fields will be reset.
   At any time, the user can click the red `X` in the top right to close the
   form completely.
-
-  <img width="591" alt="hydration_sleep_today_charts" src="https://user-images.githubusercontent.com/83175748/140830969-cb75b770-e300-4608-9880-33c2f2f17c7b.png">
 
 ## Install + Setup
   - clone down this project repository
