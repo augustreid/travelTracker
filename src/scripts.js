@@ -11,6 +11,7 @@ let allTrips;
 let userTrips;
 let destinations;
 let requestForm;
+let travelerID;
 
 const onSubmit = () => {
   event.preventDefault();
@@ -21,15 +22,14 @@ const onSubmit = () => {
     userId = usernameInput.split("traveler")[1]
   }
   if (passwordInput === "travel" && userId) {
-    //hide input form
     loginPage.classList.add("hidden");
     mainBody.classList.remove("hidden");
-    let travelerID = Number(userId)
+    travelerID = Number(userId)
     renderDashboard(travelerID)
-    //show main body
-    //communicate userID to first fetch for user
   } else {
-    alert("try again")
+    loginError.innerText = "Please enter a valid username and password!"
+    username.value = "";
+    password.value = "";
   }
 }
 
@@ -227,7 +227,7 @@ const submitTripRequest = () => {
       .then(response => response.json())
       .then(pending.innerHTML = "")
       .then(resetForm())
-      .then(renderDashboard())
+      .then(renderDashboard(travelerID))
       .then(MicroModal.close("modal-1"))
   }
 }
@@ -263,6 +263,7 @@ const checkValidity = () => {
     return true;
   }
 }
+
 //query selectors
 const greeting = document.querySelector("#greeting");
 const past = document.querySelector("#pastTrips");
@@ -288,8 +289,6 @@ const loginButton = document.querySelector("#loginButton");
 const welcomeMessage = document.querySelector("#welcome");
 const mainBody = document.querySelector("#mainBody");
 
-//event listeners
-// window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);

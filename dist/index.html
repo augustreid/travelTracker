@@ -10,8 +10,21 @@
 </head>
 
 <body>
-  <div id="loginPage" class="login-page">
+  <header>
+    <h1><i class="fas fa-rocket"></i> TRVL.</h1>
+    <span class="welcome">
+      <h2 id="greeting"> Welcome, Traveler!</h2>
+      <i class="fas fa-user-astronaut"></i>
+    </span>
+  </header>
+  <section id="loginPage" class="login-page">
+    <div class="login-globe">
+    <h2 class="login-header"> Login To Manage Your Travel Plans </h2>
+    <i class="fas fa-globe-americas"></i>
+  </div>
     <form>
+      <div class="login-form">
+        <p id="loginError" class="error"></p>
       <label>
         Username:
         <input type="text" id="username">
@@ -20,18 +33,12 @@
         Password:
         <input type="text" id="password">
       </label>
-      <button type="submit" id="loginButton"> Submit </button>
+      <button type="submit" id="loginButton"> Sign-in Here </button>
+    </div>
     </form>
-  </div>
+  </section>
 
   <div id="mainBody" class=" main-body hidden">
-  <header>
-    <h1><i class="fas fa-rocket"></i> TRVL.</h1>
-    <span class="welcome">
-      <h2 id="greeting"> Welcome, Traveler!</h2>
-      <i class="fas fa-user-astronaut"></i>
-    </span>
-  </header>
   <aside class="left-side">
     <nav class="trip-buttons" id="tripButtons">
       <button id="past" data-tab-target="#pastTrips" class="past-trips"> Previous </button>
