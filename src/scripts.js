@@ -20,14 +20,17 @@ let destinations;
 let requestForm;
 
 const onSubmit = () => {
-  const usernameInput = username.value;
-  const passwordInput = password.value;
+  event.preventDefault();
+  let usernameInput = username.value;
+  let passwordInput = password.value;
   let userId;
   if (usernameInput.includes("traveler")) {
-    userId = unsernameInput.split("traveler")[1]
+    userId = usernameInput.split("traveler")[1]
   }
-  if (passwordInput === "travel" && userID) {
+  if (passwordInput === "travel" && userId) {
     //hide input form
+    loginPage.classList.add("hidden");
+    mainBody.classList.remove("hidden");
     //show main body
     //communicate userID to first fetch for user
   } else {
@@ -278,9 +281,12 @@ const submitButton = document.querySelector("#submitButton");
 const tripForm = document.querySelector("#tripForm");
 const modal = document.querySelector("#modal-1")
 const spentThisYear = document.querySelector("#spentThisYear");
+const loginPage = document.querySelector("#loginPage");
 const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const loginButton = document.querySelector("#loginButton");
+const welcomeMessage = document.querySelector("#welcome");
+const mainBody = document.querySelector("#mainBody");
 
 //event listeners
 window.addEventListener("load", renderDashboard);
