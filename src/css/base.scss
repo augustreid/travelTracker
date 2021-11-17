@@ -11,18 +11,58 @@
 }
 
 .login-page {
-  @include m.flexbox(column, center, center);
-  height: 100vh;
-  background-color: v.$med-warm;
+  flex: v.$flex1;
+  padding: 2rem;
+  background-color: v.$med-cool;
+  @include m.flexbox(row, space-between, center);
+  overflow: auto;
+  border-top: solid 4px v.$dark;
+  border-left: groove 4px v.$dark;
   form {
     @include m.flexbox(column, center, center);
   }
 }
 
+.login-globe {
+  @include m.flexbox(column, space-around, center);
+  color: v.$dark;
+  padding: 3rem;
+  overflow: hidden;
+  i {
+    flex: 1 1 400px;
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font-size: 400pt;
+  }
+}
+
+.login-header {
+  flex-shrink: 1;
+  color: v.$dark;
+}
+
+.error {
+  font-size: larger;
+  color: red;
+}
+
 .login-form {
-  @include m.flexbox(column, space-between, center);
+  @include m.flexbox(column, center, center);
+  flex-shrink: 1;
   background-color: v.$light-warm;
   padding: 3rem;
+  @include m.card-border;
+  input {
+    margin-bottom: 2rem;
+  }
+  button {
+    background-color: white;
+    font-size: 18pt;
+    padding: .5rem;
+    color: v.$dark;
+    @include m.card-border;
+  }
 }
 
 header {
