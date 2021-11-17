@@ -12,13 +12,34 @@ let userTrips;
 let destinations;
 let requestForm;
 
-const renderDashboard = () => {
-  renderTravelerData();
+const onSubmit = () => {
+  event.preventDefault();
+  let usernameInput = username.value;
+  let passwordInput = password.value;
+  let userId;
+  if (usernameInput.includes("traveler")) {
+    userId = usernameInput.split("traveler")[1]
+  }
+  if (passwordInput === "travel" && userId) {
+    //hide input form
+    loginPage.classList.add("hidden");
+    mainBody.classList.remove("hidden");
+    let travelerID = Number(userId)
+    renderDashboard(travelerID)
+    //show main body
+    //communicate userID to first fetch for user
+  } else {
+    alert("try again")
+  }
+}
+
+const renderDashboard = (idNumber) => {
+  renderTravelerData(idNumber);
 }
 
 //render functions
-const renderTravelerData = () => {
-  const userID = 9;
+const renderTravelerData = (idNumber) => {
+  const userID = idNumber;
   fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
     .then(response => response.json())
     .then(data => {
@@ -260,9 +281,17 @@ const tripForm = document.querySelector("#tripForm");
 const modal = document.querySelector("#modal-1")
 const spentThisYear = document.querySelector("#spentThisYear");
 const showFormButton = document.querySelector("#showForm");
+const loginPage = document.querySelector("#loginPage");
+const username = document.querySelector("#username");
+const password = document.querySelector("#password");
+const loginButton = document.querySelector("#loginButton");
+const welcomeMessage = document.querySelector("#welcome");
+const mainBody = document.querySelector("#mainBody");
+
 //event listeners
-window.addEventListener("load", renderDashboard);
+// window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);
 showFormButton.addEventListener("click", showTripForm);
+loginButton.addEventListener("click", onSubmit);
