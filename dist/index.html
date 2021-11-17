@@ -10,10 +10,26 @@
 </head>
 
 <body>
+  <div id="loginPage" class="login-page">
+    <form>
+      <label>
+        Username:
+        <input type="text" id="username">
+      </label>
+      <label>
+        Password:
+        <input type="text" id="password">
+      </label>
+      <button type="submit" id="loginButton"> Submit </button>
+    </form>
+  </div>
+
+  <div id="mainBody" class=" main-body hidden">
   <header>
     <h1><i class="fas fa-rocket"></i> TRVL.</h1>
-    <span class="welcome">
+    <span class="welcome" id="welcome">
       <h2 id="greeting"> Welcome, Traveler! </h2>
+      <p id="spentThisYear">sample</p>
       <i class="fas fa-user-astronaut"></i>
     </span>
   </header>
@@ -25,8 +41,10 @@
     </nav>
 
     <section class="tab-content">
+      <!-- <p id="spentThisYear">sample</p> -->
       <div class="all-tabs past-trips active">
-        <section id="pastTrips" data-tab-content class="past-trips active"></section>
+        <section id="pastTrips" data-tab-content class="past-trips active">
+        </section>
       </div>
       <div class="all-tabs future-trips">
         <section id="futureTrips" data-tab-content class="future-trips"></section>
@@ -36,45 +54,48 @@
       </div>
     </section>
   </main>
+
   <main class="right-side">
-    <h2> Ready to plan your next adventure? </h2>
-    <section class="book-trip">
-      <div id="modal-1" aria-hidden="true">
-        <div tabindex="-1" data-micromodal-close>
-          <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-            <header class="form-header">
-              <h3 id="modal-1-title">
-                Plan a Trip
-              </h3>
-              <button aria-label="Close modal" data-micromodal-close></button>
-            </header>
-            <div id="modal-1-content">
-              <form id="tripForm">
-                <select name="tripOptions" id="tripOptions">
-                  <option value="">--Please choose a destination--</option>
-                </select>
-                <label for="pickDate"> Choose a departure date </label>
-                <input type="date" name="pickDate" id="pickDate">
-                <label for="tripLength"> How many days? </label>
-                <input type="number" name="tripLength" id="tripLength">
-                <label for="partySize"> How many travelers? </label>
-                <input type="number" name="partySize" id="partySize">
-                <span class="price">
-                  <h4> Estimated cost: </h4>
-                  <p id="price"> $0.00 </p>
-                </span>
-                <span class="form-buttons">
-                  <button type="reset" id="cancelButton"> Cancel </button>
-                  <button type="submit" id="submitButton"> Book trip! </button>
-                </span>
-              </form>
-            </div>
+    <section class="plan-adventure">
+      <h2> Ready to plan your next adventure? </h2>
+      <button id="showForm" aria-label="show-form"> <i class="fas fa-globe-americas"></i> </button>
+    </section>
+    <div class="modal hidden" id="modal-1" aria-hidden="true">
+      <div tabindex="-1" data-micromodal-close>
+        <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+          <header class="form-header">
+            <h3 id="modal-1-title">
+              Plan a Trip
+            </h3>
+            <!-- <button class="close-modal" aria-label="Close modal" data-micromodal-close> X </button> -->
+          </header>
+          <div id="modal-1-content">
+            <form id="tripForm">
+              <select name="tripOptions" id="tripOptions">
+                <option value="">--Please choose a destination--</option>
+              </select>
+              <label for="pickDate"> Choose a departure date </label>
+              <input type="date" name="pickDate" id="pickDate">
+              <label for="tripLength"> How many days? </label>
+              <input type="number" name="tripLength" id="tripLength">
+              <label for="partySize"> How many travelers? </label>
+              <input type="number" name="partySize" id="partySize">
+              <span class="price">
+                <h4> Estimated cost: </h4>
+                <p id="price"> $0.00 </p>
+              </span>
+              <span class="form-buttons">
+                <button type="reset" id="cancelButton"> Cancel </button>
+                <button type="submit" id="submitButton"> Book trip! </button>
+              </span>
+            </form>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
   </main>
+</div>
   <!-- <footer>Footer</footer> -->
 
   <script src="bundle.js"></script>

@@ -9,11 +9,7 @@ import DataRepo from "../src/DataRepo.js";
 import SingleTrip from "../src/SingleTrip.js";
 import Traveler from "../src/Traveler.js";
 import Destination from "../src/Destination.js";
-import {
-  sampleTravelers,
-  samplePlaces,
-  sampleTrips
-} from "../src/dummyData.js";
+
 
 // const greeting = document.querySelector("#greeting");
 
@@ -21,15 +17,36 @@ let traveler;
 let allTrips;
 let userTrips;
 let destinations;
-// let location;
+let requestForm;
 
-const renderDashboard = () => {
-  renderTravelerData();
+const onSubmit = () => {
+  event.preventDefault();
+  let usernameInput = username.value;
+  let passwordInput = password.value;
+  let userId;
+  if (usernameInput.includes("traveler")) {
+    userId = usernameInput.split("traveler")[1]
+  }
+  if (passwordInput === "travel" && userId) {
+    //hide input form
+    loginPage.classList.add("hidden");
+    mainBody.classList.remove("hidden");
+    let travelerID = Number(userId)
+    renderDashboard(travelerID)
+    //show main body
+    //communicate userID to first fetch for user
+  } else {
+    alert("try again")
+  }
+}
+
+const renderDashboard = (idNumber) => {
+  renderTravelerData(idNumber);
 }
 
 //render functions
-const renderTravelerData = () => {
-  const userID = 7;
+const renderTravelerData = (idNumber) => {
+  const userID = idNumber;
   fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
   .then(response => response.json())
   .then(data => {
@@ -69,6 +86,8 @@ const displayDashboard = () => {
   displayTrips(future);
   displayTrips(pending);
   toggleTabs();
+  makeModal();
+  displayYearTotal();
 }
 
 const displayGreeting = () => {
@@ -117,6 +136,33 @@ const displayTrips = (section) => {
   })
 }
 
+const displayYearTotal = () => {
+  const yearTotal = calculateYearTotal();
+  spentThisYear.innerHTML = `You spent too much, dumbass: $${yearTotal}`
+}
+
+const calculateYearTotal = () => {
+  const yearTrips = getTripsThisYear();
+  const yearTotal = yearTrips.reduce((sum, currentTrip) => {
+    let location = getDestinationInfo(currentTrip.destinationID);
+    let tripPrice = location.calculateTotalCost(currentTrip.duration, currentTrip.travelers)
+    sum += tripPrice;
+    return sum;
+  }, 0)
+  return yearTotal;
+}
+
+const getTripsThisYear = () => {
+  userTrips.sortTripsByStatus();
+  const startDate = new Date("2021/01/01");
+  const endDate = new Date("2021/12/31");
+  const thisYear = userTrips.approved.filter((trip) => {
+    return startDate < new Date(trip.date) && new Date(trip.date) < endDate
+  })
+  return thisYear;
+}
+
+
 const getDisplaySection = (status) => {
   let section;
   if (status === pending) {
@@ -146,6 +192,10 @@ const toggleTabs = () => {
     })
   })
 };
+
+const makeModal = () => {
+  MicroModal.show("modal-1")
+}
 
 const displayTripOptions = () => {
   const alphabetized = destinations.dataSet.sort((a, b) => {
@@ -178,7 +228,10 @@ const submitTripRequest = () => {
        }
      })
   .then(response => response.json())
-  .then(resetForm());
+  .then(pending.innerHTML = "")
+  .then(resetForm())
+  .then(renderDashboard())
+  .then(MicroModal.close("modal-1"))
   }
 }
 
@@ -199,8 +252,6 @@ const displayEstimate = () => {
 }
 
 const calculatePrice = () => {
-  // const validInput = checkValidity();
-  // if (validInput) {
     const localeID = Number(tripOptions.value);
     const days = Number(tripLength.value);
     const people = Number(partySize.value);
@@ -230,8 +281,18 @@ const price = document.querySelector("#price");
 const cancelButton = document.querySelector("#cancelButton");
 const submitButton = document.querySelector("#submitButton");
 const tripForm = document.querySelector("#tripForm");
+const modal = document.querySelector("#modal-1")
+const spentThisYear = document.querySelector("#spentThisYear");
+const loginPage = document.querySelector("#loginPage");
+const username = document.querySelector("#username");
+const password = document.querySelector("#password");
+const loginButton = document.querySelector("#loginButton");
+const welcomeMessage = document.querySelector("#welcome");
+const mainBody = document.querySelector("#mainBody");
+
 //event listeners
-window.addEventListener("load", renderDashboard);
+// window.addEventListener("load", renderDashboard);
 submitButton.addEventListener("click", submitTripRequest);
 cancelButton.addEventListener("click", resetForm);
 tripForm.addEventListener("click", displayEstimate);
+loginButton.addEventListener("click", onSubmit);
