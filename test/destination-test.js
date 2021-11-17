@@ -59,7 +59,7 @@ describe('Destination', () => {
 
   it("should calculate the total trip cost including a 10% agent fee", function() {
     let result3 = destination.calculateTotalCost(10, 10);
-    expect(result3).to.equal()
+    expect(result3).to.equal(10560)
   })
 
 });

@@ -64,7 +64,7 @@ describe('SingleTrip', () => {
   });
 
   it("should be able to return the date in readable format", function() {
-    const result = trip.formatDate();
-    expect(result).to.equal("Fri Sep 27 2019")
+    trip.formatDate();
+    expect(trip.date).to.equal("Fri Sep 27 2019")
   })
 })
