@@ -145,10 +145,8 @@ img {
 .form-header {
   background-color: inherit;
   align-content: center;
-}
-
-.modal {
-  display: none;
+  display: flex;
+  font-size: 20pt;
 }
 
 .modal.is-open {
@@ -169,8 +167,8 @@ img {
 .close-modal {
   background-color: inherit;
   color: darkred;
-  font-weight: bold;
-  font-size: larger;
+  font-weight: bolder;
+  font-size: 20pt;
   border: none;
 }
 

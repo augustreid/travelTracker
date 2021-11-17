@@ -61,11 +61,11 @@
               <label for="pickDate"> Choose a departure date </label>
               <input type="date" name="pickDate" id="pickDate">
               <label for="tripLength"> How many days? </label>
-              <input type="number" name="tripLength" id="tripLength">
+              <input type="number" min="1" max="100" name="tripLength" id="tripLength">
               <label for="partySize"> How many travelers? </label>
-              <input type="number" name="partySize" id="partySize">
+              <input type="number" min="1" max="100" name="partySize" id="partySize">
               <span class="price">
-                <h4> Estimated cost: </h4>
+                <h4> Estimate including agent fee: </h4>
                 <p id="price"> $0.00 </p>
               </span>
               <span class="form-buttons">
