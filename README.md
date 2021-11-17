@@ -1,105 +1,113 @@
-# Webpack Starter Kit
+# TRVL.
 
-## Clone This Repo
+Project Manager: [Cassandra Torske](https://github.com/CassandraGoose)
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+## Table of Contents
+  - [Abstract](#abstract)
+  - [Technologies](#technologies)
+  - [Illustrations](#illustrations)
+  - [Install + Setup](#set-up)
+  - [Contributors](#contributors)
+  - [Wins](#wins)
+  - [Challenges + Improvements](#challenges-+-Improvements)
+  - [Project Specs](#project-specs)
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+## Abstract
+This was a final solo project for Turing's frontend program mod 2.
+The travel app is designed to store and track the user's previous trips,
+upcoming trips, and any trips that are "pending" while awaiting approval by an
+agent. The app also allows the user to submit a request for a future trip
+by specifying the destination, date, number of days, and number of travelers.
 
-Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+Learning goals included: a focus on OOP, use of an API to send and receive data,
+accessible UI, and practicing the code review process with another student.
 
-## Setup
+## Technologies
+  - Javascript
+  - HTML
+  - CSS
+  - Sass
+  - Node
+  - MicroModal
+  - Atom
+  - WebPack
+  - Lighthouse
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo. 
+## Illustrations
 
-Then install the library dependencies. Run:
+  On page load, the user will see the app header/logo and input fields to login.
+  The user will enter "traveler" followed by an integer between 1 and 50
+  in the `username field`, and "travel" in the `password field`.
+  If login credentials are valid, the user's TRVL. dashboard will be displayed.
 
-```bash
-npm install
-```
+  <img width="1202" alt="Screen Shot 2021-11-17 at 1 31 16 AM" src="https://user-images.githubusercontent.com/87552193/142165578-9338252b-c8ef-4f78-94c1-e26efee1becb.png">
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with some `h1` text, Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
+  <img width="1195" alt="Screen Shot 2021-11-17 at 1 31 59 AM" src="https://user-images.githubusercontent.com/87552193/142165610-518747d4-2a1b-4c17-99c2-8d13e8783d29.png">
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+  The lefthand side of the app displays all of the user's trips, which are sorted
+  into tabs for `previous`, `upcoming`, and `pending`. The user can click a tab
+  to view the trips in that category. Each trip is displayed with a destination,
+  date, duration, number of travelers, and cost (which includes a 10% agent fee),
+  and an image that represents the destination.
 
-**Create all of your feature code files in the `src` directory.**
+  <img width="1391" alt="Screen Shot 2021-11-17 at 1 32 56 AM" src="https://user-images.githubusercontent.com/87552193/142165665-7f467c86-2dba-43fa-80bd-0036f5b6dc1b.png">
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+  <img width="402" alt="Screen Shot 2021-11-17 at 1 33 28 AM" src="https://user-images.githubusercontent.com/87552193/142165730-5ddb0cf7-eb6f-4811-a611-fdccb0cdc9d7.png">
 
-### HTML
+  At the top of the central section of the app, the user will get a message
+  informing them of how much money they have spent on trips for the year 2021.
+  They will also see a giant globe icon.
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
+  When the user clicks on the `globe`, a form modal will appear on the right side.
+  The user can select a trip destination from the `list of options`, then choose
+  the date, number of days, and number of travelers. When all fields are filled,
+  a box at the bottom will populate with an estimated price for the trip,
+  including the 10% agent fee.
 
-### CSS (SCSS/SASS)
+  <img width="1438" alt="Screen Shot 2021-11-17 at 1 34 57 AM" src="https://user-images.githubusercontent.com/87552193/142165767-59bccb5d-2c2d-440c-b7f3-da993947acd4.png">
 
-This project is setup to use SCSS/Sass files by default instead of your regular CSS files. Add your SCSS files in the `src/css` directory. There is a `base.scss` file already there, but you can change this file and add multiple SCSS files in this directory.
+  If the user clicks the `Book trip!` button, the new trip will be added to
+  their trips and displayed in the `pending` tab.
 
-This might sound weird, but you need to `import` your SCSS files in the JavaScript entry file (`scripts.js`) for the styles to be applied to your HTML. The example `base.scss` file has already been imported in the JavaScript entry file as an example.
+  <img width="1126" alt="Screen Shot 2021-11-17 at 1 35 36 AM" src="https://user-images.githubusercontent.com/87552193/142165800-45da7042-0e5f-4dfd-8961-cea6bd4426aa.png">
 
-### Images
+  If the user wants to clear the trip request form rather than submit it,
+  they can click the `Cancel` button and the input fields will be reset.
+  At any time, the user can click the red `X` in the top right to close the
+  form completely.
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+## Install + Setup
+  - clone down this project repository
+      * npm install to install dependencies
+      * npm start to run local server
+      * copy URL into browser to view page
+  - Clone down [this repository](https://github.com/turingschool-examples/travel-tracker-api) to use the local server API
+      * npm install to install dependencies
+      * in a second terminal tab, run npm start to run local server
 
-## How to View Your Code in Action
+## Creator
+  - [August Reid](https://github.com/augustreid)
 
-In the terminal, run:
+## Wins
+  - Created a UI focused on accessibility, which included using the MicroModal
+  library to make a fully accessible form.
+  - Fully built out the app with a small sample dataset so that the transition
+  to API data was quite smooth.
+  - Gained a much better understanding of network requests and async Javascript
+  by implementing all of my API calls inside other functions and following the
+  the thread to debug.
 
-```bash
-npm start
-```
+## Challenges + Improvements
+  - Struggled with not having sufficient time to make the app as polished as I
+  would like.
+  - Scripts.js is big and messy, in need of major refactoring.
+  - I would like to move API calls to a separate file. The way I did it was
+  intentional to improve my understanding, but I had hoped to have time to
+  refactor and DRY things up.
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
 
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+## Project Specs
+  - [Travel Tracker Instructions and Rubric](https://frontend.turing.edu/projects/travel-tracker.html)
